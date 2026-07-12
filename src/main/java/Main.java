@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import java.util.*;
+import java.io.*;
+import java.nio.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -8,7 +10,8 @@ public class Main {
         built_in.add("echo");
         built_in.add("exit");
         built_in.add("type");
-
+        String PATH = FILE.pathSeperator;
+        System.out.println(PATH);
         while(true) {
             System.out.print("$ ");
 	        Scanner sc = new Scanner(System.in);
@@ -21,7 +24,10 @@ public class Main {
                 String cmp_cmd = cmd.substring(5);
                 if(built_in.contains(cmp_cmd)){
                     System.out.println(cmp_cmd + " is a shell builtin");
-                }else{
+                } else if(){
+
+                }
+                else{
                     System.out.println(cmp_cmd +": not found");
                 }
             } 
