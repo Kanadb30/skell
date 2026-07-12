@@ -7,6 +7,7 @@ public class Main {
         HashSet<String> built_in = new HashSet<>();
         built_in.add("echo");
         built_in.add("exit");
+        built_in.add("type");
 
         while(true) {
             System.out.print("$ ");
