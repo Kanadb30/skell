@@ -11,9 +11,11 @@ public class Main {
                 break;
             } else if(cmd.startsWith("echo ")) {
                 System.out.println(cmd.substring(5));
+            } else {
+                System.out.println(cmd + ": command not found");
             }
-            
-	        System.out.println(cmd + ": command not found");
+
+	        
         }
         
     }
