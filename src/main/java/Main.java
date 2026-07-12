@@ -17,11 +17,11 @@ public class Main {
             } else if(cmd.startsWith("echo ")) {
                 System.out.println(cmd.substring(5));
             } else if (cmd.startsWith("type ")) {
-                //String cmp_cmd = cmd.subString(5);
-                if(built_in.contains(cmd.subString(5))){
-                    System.out.println(cmd.subString(5) + " is a shell builtin");
+                String cmp_cmd = cmd.substring(5);
+                if(built_in.contains(cmp_cmd)){
+                    System.out.println(cmp_cmd + " is a shell builtin");
                 }else{
-                    System.out.println(cmd.subString(5) +": not found");
+                    System.out.println(cmp_cmd +": not found");
                 }
             } 
             
