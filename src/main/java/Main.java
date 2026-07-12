@@ -24,8 +24,6 @@ public class Main {
                 String cmp_cmd = cmd.substring(5);
                 if(built_in.contains(cmp_cmd)){
                     System.out.println(cmp_cmd + " is a shell builtin");
-                } else if(){
-
                 }
                 else{
                     System.out.println(cmp_cmd +": not found");
