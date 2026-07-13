@@ -6,11 +6,21 @@ public class Builtin {
         System.out.println(System.getProperty("user.dir"));
     }
 
-    public static void history() {
-        int itr = 1;
+    public static void history(String n) {
+        int rows;
+        if(n == null){
+            rows = 0;
+        } else {
+            rows = Main.HIS.size() - Integer.parseInt(n);
+        }
+        int itr = 0;
         for (String cmd : Main.HIS) {
-            System.out.println(itr + " " + cmd);
             itr++;
+            if(rows > 0){
+                rows--;
+                continue;
+            }
+            System.out.println(itr + " " + cmd);
         }
     }
 
