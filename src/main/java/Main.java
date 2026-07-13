@@ -6,8 +6,6 @@ import java.io.*;
 public class Main {
 
     static final HashSet<String> BUILT_IN = new HashSet<>(List.of("echo", "exit", "type"));
-    static final String path = System.getenv("PATH");
-    static final ArrayList<String> PATH_DIRS = new ArrayList<>(List.of(path.split(File.pathSeparator)));
 
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
@@ -28,9 +26,6 @@ public class Main {
                 String cmp_cmd = cmd.substring(5);
                 System.out.println(typeOf(cmp_cmd));
             }else if (getAbsolutePath(ARGS.get(0)) != null) {
-                //ArrayList<String> commandWithArgs = new ArrayList<>();
-                //commandWithArgs.add(getAbsolutePath(ARGS.get(0)));
-                //commandWithArgs.addAll(ARGS.subList(1, ARGS.size()));
                 ProcessBuilder pb = new ProcessBuilder(ARGS);
                 pb.inheritIO();
                 Process p = pb.start();
@@ -60,6 +55,8 @@ public class Main {
     }
 
     private static String getAbsolutePath(String cmd){
+        String path = System.getenv("PATH");
+        ArrayList<String> PATH_DIRS = new ArrayList<>(List.of(path.split(File.pathSeparator)));
         for(String toSearch : PATH_DIRS ){
             File f = new File(toSearch, cmd);
             if(f.exists() && f.canExecute()){
