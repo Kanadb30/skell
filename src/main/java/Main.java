@@ -35,7 +35,13 @@ public class Main {
 
             else if(ARGS.get(0).equals("pwd")) Builtin.pwd();
 
-            else if(ARGS.get(0).equals("cd")) Builtin.cd(ARGS.get(1));
+            else if(ARGS.get(0).equals("cd")) {
+                if(ARGS.size() == 1){
+                    Builtin.cd("~");
+                } else {
+                    Builtin.cd(ARGS.get(1));
+                }
+            }
 
             else if(ARGS.get(0).equals("echo")) {
                 Builtin.echo(ARGS.toArray(new String[0]));
