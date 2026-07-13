@@ -7,8 +7,10 @@ public class Builtin {
     }
 
     public static void history() {
+        int itr = 1;
         for (String cmd : Main.HIS) {
-            System.out.println(cmd);
+            System.out.println(itr + " " + cmd);
+            itr++;
         }
     }
 
