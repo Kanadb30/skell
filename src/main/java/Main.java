@@ -1,7 +1,9 @@
 import java.util.*;
 import java.nio.*;
 import java.io.*;
-import org.jLine.*;
+import org.jline.reader.*;
+import org.jline.reader.impl.history.DefaultHistory;
+import org.jline.terminal.*;
 
 
 public class Main {
@@ -73,7 +75,6 @@ public class Main {
 
 	        
         }
-        sc.close();
         
     }
 
