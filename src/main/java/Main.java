@@ -28,8 +28,10 @@ public class Main {
                 String cmp_cmd = cmd.substring(5);
                 System.out.println(typeOf(cmp_cmd));
             }else if (getAbsolutePath(ARGS.get(0)) != null) {
-
-                ProcessBuilder pb = new ProcessBuilder(getAbsolutePath(ARGS.get(0)),ARGS.subList(1,ARGS.size()));
+                ArrayList<String> commandWithArgs = new ArrayList<>();
+                commandWithArgs.add(getAbsolutePath(ARGS.get(0)));
+                commandWithArgs.addAll(ARGS.subList(1, ARGS.size()));
+                ProcessBuilder pb = new ProcessBuilder(commandWithArgs);
                 pb.inheritIO();
                 Process p = pb.start();
                 p.waitFor();
