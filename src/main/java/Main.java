@@ -5,7 +5,9 @@ import java.io.*;
 
 public class Main {
 
-    static final HashSet<String> BUILT_IN = new HashSet<>(List.of("echo", "exit", "type", "pwd", "cd"));
+    public ArrayList<String> HIS = new ArrayList<>();
+
+    static final HashSet<String> BUILT_IN = new HashSet<>(List.of("echo", "exit", "type", "pwd", "cd", "history"));
 
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
@@ -15,6 +17,7 @@ public class Main {
                 break;
             }
 	        String cmd = sc.nextLine();
+            HIS.add(cmd);
             ArrayList<String> ARGS = new ArrayList<>(List.of(cmd.split(" ")));
 
             if(ARGS.get(0).equals("exit")) {
@@ -22,58 +25,14 @@ public class Main {
                 
             } 
 
-            else if(ARGS.get(0).equals("pwd")){
-                System.out.println(System.getProperty("user.dir"));
-            }
+            else if(ARGS.get(0).equals("history")) Builtin.history();
 
-            else if(ARGS.get(0).equals("cd")){
-                if(ARGS.size() == 1){
-                    System.setProperty("user.dir", System.getenv("HOME"));
-                    continue;
-                }
-                if(ARGS.get(1).equals("~")){
-                    System.setProperty("user.dir", System.getenv("HOME"));
-                    continue;
-                }
-                String errString = ARGS.get(1);
-                if(ARGS.get(1).startsWith("/")){
-                    ARGS.set(1, ARGS.get(1).substring(1));
-                }
-                if(ARGS.size() > 1){
-                    if(new File(errString).isAbsolute() && new File(errString).isDirectory()){
-                        System.setProperty("user.dir", errString);
-                    }else{
-                        ArrayList<String> pathToFollow = new ArrayList<>(List.of(ARGS.get(1).split("/")));
-                        String currentDir = System.getProperty("user.dir");
-                        for(String segment : pathToFollow){
-                            if(segment.equals("..")){
-                                File parentDir = new File(currentDir).getParentFile();
-                                if(parentDir != null){
-                                    currentDir = parentDir.getAbsolutePath();
-                                }else {
-                                    System.out.println("cd: " + errString + ": No such file or directory");
-                                    break;
-                                }
-                            }else if(segment.equals(".")){
-                                continue;
-                            }else{
-                                File f = new File(currentDir, segment);
-                                if(f.exists() && f.isDirectory()){
-                                    currentDir = f.getAbsolutePath();
-                                }else {
-                                    System.out.println("cd: " + errString + ": No such file or directory");
-                                    break;
-                                }
-                            }
-                        }
-                        System.setProperty("user.dir", currentDir);
-                    }
-                }
-            }
+            else if(ARGS.get(0).equals("pwd")) Builtin.pwd();
+
+            else if(ARGS.get(0).equals("cd")) Builtin.cd(ARGS.get(1));
 
             else if(ARGS.get(0).equals("echo")) {
-                System.out.println(String.join(" ", ARGS.subList(1, ARGS.size())));
-
+                Builtin.echo(ARGS.toArray(new String[0]));
             } 
             
             else if (ARGS.get(0).equals("type")) {
