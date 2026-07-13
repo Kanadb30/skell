@@ -25,7 +25,13 @@ public class Main {
                 
             } 
 
-            else if(ARGS.get(0).equals("history")) Builtin.history(ARGS.get(1));
+            else if(ARGS.get(0).equals("history")) {
+                if(ARGS.size() == 1){
+                    Builtin.history(null);
+                } else {
+                    Builtin.history(ARGS.get(1));
+                }
+            }
 
             else if(ARGS.get(0).equals("pwd")) Builtin.pwd();
 
