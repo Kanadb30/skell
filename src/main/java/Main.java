@@ -22,7 +22,7 @@ public class Main {
             } else if(ARGS.get(0).equals("echo")) {
                 System.out.println(String.join(" ", ARGS.subList(1, ARGS.size())));
 
-            } else if (ARGS.get(0).equals("type ")) {
+            } else if (ARGS.get(0).equals("type")) {
                 String cmp_cmd = cmd.substring(5);
                 System.out.println(typeOf(cmp_cmd));
             }else if (getAbsolutePath(ARGS.get(0)) != null) {
