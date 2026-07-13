@@ -27,6 +27,9 @@ public class Main {
             }
 
             else if(ARGS.get(0).equals("cd")){
+                if(ARGS.get(1).startsWith("/")){
+                    ARGS.set(1, ARGS.get(1).substring(1));
+                }
                 if(ARGS.size() > 1){
                     if(new File(ARGS.get(1)).isAbsolute()){
                         System.setProperty("user.dir", ARGS.get(1));
