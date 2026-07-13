@@ -1,33 +1,29 @@
-import java.util.Scanner;
 import java.util.*;
-import java.io.*;
 import java.nio.*;
+import java.io.*;
+
+HashSet<String> BUILT_IN = new HashSet<>();
+        BUILT_IN.add("echo");
+        BUILT_IN.add("exit");
+        BUILT_IN.add("type");
+String path = System.getenv("PATH");
+ArrayList<String> PATH_DIRS = new ArrayList<>(List.of(path.split(File.pathSeperator)));
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        // TODO: Uncomment the code below to pass the first stage\
-        HashSet<String> built_in = new HashSet<>();
-        built_in.add("echo");
-        built_in.add("exit");
-        built_in.add("type");
-        String PATH = FILE.pathSeperator;
-        System.out.println(PATH);
         while(true) {
             System.out.print("$ ");
 	        Scanner sc = new Scanner(System.in);
 	        String cmd = sc.nextLine();
             if(cmd.equals("exit")) {
                 break;
+                
             } else if(cmd.startsWith("echo ")) {
                 System.out.println(cmd.substring(5));
+
             } else if (cmd.startsWith("type ")) {
                 String cmp_cmd = cmd.substring(5);
-                if(built_in.contains(cmp_cmd)){
-                    System.out.println(cmp_cmd + " is a shell builtin");
-                }
-                else{
-                    System.out.println(cmp_cmd +": not found");
-                }
+                System.out.println(typeOf(cmp_cmd));
             } 
             
             else {
@@ -37,5 +33,19 @@ public class Main {
 	        
         }
         
+    }
+
+    private static String typeOf(String cmd){
+        if(BUILT_IN.contains(cmd)){
+            return cmd + " is a shell builtin";
+        }
+        for(String toSearch : PATH_DIRS ){
+            File f = new File(toSearch, cmd);
+            if(f.exists() && f.isExecutable()){
+                return cmd + " is " + f.getAbsolutePath();
+            }
+            
+        }
+        return cmd + ": not found";
     }
 }
