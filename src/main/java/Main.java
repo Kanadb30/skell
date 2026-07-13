@@ -31,6 +31,10 @@ public class Main {
                     System.setProperty("user.dir", System.getProperty("user.home"));
                     continue;
                 }
+                if(ARGS.get(1).equals("~")){
+                    System.setProperty("user.dir", System.getProperty("user.home"));
+                    continue;
+                }
                 String errString = ARGS.get(1);
                 if(ARGS.get(1).startsWith("/")){
                     ARGS.set(1, ARGS.get(1).substring(1));
