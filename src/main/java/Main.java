@@ -17,16 +17,23 @@ public class Main {
                 break;
             }
 	        String cmd = sc.nextLine();
-            if(cmd.equals("exit")) {
+            ArrayList<String> args = new ArrayList<>(List.of(cmd.split(" ")));
+            if(args.get(0).equals("exit")) {
                 break;
                 
-            } else if(cmd.startsWith("echo ")) {
-                System.out.println(cmd.substring(5));
+            } else if(args.get(0).equals("echo")) {
+                System.out.println(String.join(" ", args.subList(1, args.size())));
 
-            } else if (cmd.startsWith("type ")) {
+            } else if (args.get(0).equals("type ")) {
                 String cmp_cmd = cmd.substring(5);
                 System.out.println(typeOf(cmp_cmd));
-            } 
+            }else if (getAbsolutePath(args.get(0)) != null) {
+
+                ProcessBuilder pb = new ProcessBuilder(getAbsolutePath(args.get(0),args.get(1),args.get(2)));
+                pb.inheritIO();
+                Process p = pb.start();
+                p.waitFor();
+            }
             
             else {
                 System.out.println(cmd + ": command not found");
@@ -42,13 +49,22 @@ public class Main {
         if(BUILT_IN.contains(cmd)){
             return cmd + " is a shell builtin";
         }
+        String absPath = getAbsolutePath(cmd);
+        if(absPath != null){
+            return cmd + " is " + absPath;
+        }
+
+        return cmd + ": not found";
+    }
+
+    private static String getAbsolutePath(String cmd){
         for(String toSearch : PATH_DIRS ){
             File f = new File(toSearch, cmd);
             if(f.exists() && f.canExecute()){
-                return cmd + " is " + f.getAbsolutePath();
+                return f.getAbsolutePath();
             }
             
         }
-        return cmd + ": not found";
+        return null;
     }
 }
