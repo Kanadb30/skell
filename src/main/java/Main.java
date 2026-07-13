@@ -28,11 +28,30 @@ public class Main {
 
             else if(ARGS.get(0).equals("cd")){
                 if(ARGS.size() > 1){
-                    if(!new File(ARGS.get(1)).exists()){
-                        System.out.println("cd: " + ARGS.get(1) + ": No such file or directory");
-                    }else{
-                        System.setProperty("user.dir", ARGS.get(1));
+                    ArrayList<String> pathToFollow = new ArrayList<>(List.of(ARGS.get(1).split("/")));
+                    String currentDir = System.getProperty("user.dir");
+                    for(String segment : pathToFollow){
+                        if(segment.equals("..")){
+                            File parentDir = new File(currentDir).getParentFile();
+                            if(parentDir != null){
+                                currentDir = parentDir.getAbsolutePath();
+                            }else {
+                                System.out.println("cd: " + ARGS.get(1) + ": No such file or directory");
+                            }
+                        }else if(segment.equals(".") || segment.isEmpty()){
+                            continue;
+                        }
+                        else{
+                            File f = new File(currentDir, segment);
+                            if(f.exists() && f.isDirectory()){
+                                currentDir = f.getAbsolutePath();
+                            }else {
+                                System.out.println("cd: " + ARGS.get(1) + ": No such file or directory");
+                                break;
+                            }
+                        }
                     }
+                    System.setProperty("user.dir", currentDir);
                 }
             }
 
