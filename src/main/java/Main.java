@@ -28,11 +28,11 @@ public class Main {
 
             else if(ARGS.get(0).equals("cd")){
                 if(ARGS.size() == 1){
-                    System.setProperty("user.dir", System.getProperty("user.home"));
+                    System.setProperty("user.dir", System.getEnv("HOME"));
                     continue;
                 }
                 if(ARGS.get(1).equals("~")){
-                    System.setProperty("user.dir", System.getProperty("user.home"));
+                    System.setProperty("user.dir", System.getEnv("HOME"));
                     continue;
                 }
                 String errString = ARGS.get(1);
