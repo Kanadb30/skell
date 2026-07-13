@@ -5,7 +5,7 @@ import java.io.*;
 
 public class Main {
 
-    public ArrayList<String> HIS = new ArrayList<>();
+    public static ArrayList<String> HIS = new ArrayList<>();
 
     static final HashSet<String> BUILT_IN = new HashSet<>(List.of("echo", "exit", "type", "pwd", "cd", "history"));
 
