@@ -1,6 +1,7 @@
 import java.util.*;
 import java.nio.*;
 import java.io.*;
+import org.jLine.*;
 
 
 public class Main {
@@ -10,13 +11,20 @@ public class Main {
     static final HashSet<String> BUILT_IN = new HashSet<>(List.of("echo", "exit", "type", "pwd", "cd", "history"));
 
     public static void main(String[] args) throws Exception {
-        Scanner sc = new Scanner(System.in);
+        Terminal terminal = TerminalBuilder.builder().system(true).build();
+        LineReader reader = LineReaderBuilder.builder()
+            .terminal(terminal)
+            .history(new DefaultHistory())
+            .build();
         while(true) {
-            System.out.print("$ ");
-            if(!sc.hasNextLine()) {
+            String cmd;
+            try {
+                cmd = reader.readLine("$ ");
+            } catch (EndOfFileException e) {
                 break;
+            } catch (UserInterruptException e) {
+                continue;
             }
-	        String cmd = sc.nextLine();
             HIS.add(cmd);
             ArrayList<String> ARGS = new ArrayList<>(List.of(cmd.split(" ")));
 
