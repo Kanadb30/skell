@@ -29,7 +29,7 @@ public class Main {
                 System.out.println(typeOf(cmp_cmd));
             }else if (getAbsolutePath(ARGS.get(0)) != null) {
 
-                ProcessBuilder pb = new ProcessBuilder(getAbsolutePath(ARGS.get(0)),ARGS.get(1),ARGS.get(2));
+                ProcessBuilder pb = new ProcessBuilder(getAbsolutePath(ARGS.get(0)),ARGS.subList(1,ARGS.size()));
                 pb.inheritIO();
                 Process p = pb.start();
                 p.waitFor();
