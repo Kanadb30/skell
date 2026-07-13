@@ -28,6 +28,7 @@ public class Main {
 
             else if(ARGS.get(0).equals("cd")){
                 if(ARGS.get(1).startsWith("/")){
+                    String errString = ARGS.get(1);
                     ARGS.set(1, ARGS.get(1).substring(1));
                 }
                 if(ARGS.size() > 1){
@@ -42,7 +43,7 @@ public class Main {
                                 if(parentDir != null){
                                     currentDir = parentDir.getAbsolutePath();
                                 }else {
-                                    System.out.println("cd: " + ARGS.get(1) + ": No such file or directory");
+                                    System.out.println("cd: " + errString + ": No such file or directory");
                                 }
                             }else if(segment.equals(".")){
                                 continue;
@@ -51,7 +52,7 @@ public class Main {
                                 if(f.exists() && f.isDirectory()){
                                     currentDir = f.getAbsolutePath();
                                 }else {
-                                    System.out.println("cd: " + ARGS.get(1) + ": No such file or directory");
+                                    System.out.println("cd: " + errString + ": No such file or directory");
                                     break;
                                 }
                             }
