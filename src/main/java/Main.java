@@ -5,7 +5,7 @@ import java.io.*;
 
 public class Main {
 
-    static final HashSet<String> BUILT_IN = new HashSet<>(List.of("echo", "exit", "type", "pwd"));
+    static final HashSet<String> BUILT_IN = new HashSet<>(List.of("echo", "exit", "type", "pwd", "cd"));
 
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
@@ -25,7 +25,17 @@ public class Main {
             else if(ARGS.get(0).equals("pwd")){
                 System.out.println(System.getProperty("user.dir"));
             }
-            
+
+            else if(ARGS.get(0).equals("cd")){
+                if(ARGS.size() > 1){
+                    if(!new File(ARGS.get(1)).exists()){
+                        System.out.println("cd: " + ARGS.get(1) + ": No such file or directory");
+                    }else{
+                        System.setProperty("user.dir", ARGS.get(1));
+                    }
+                }
+            }
+
             else if(ARGS.get(0).equals("echo")) {
                 System.out.println(String.join(" ", ARGS.subList(1, ARGS.size())));
 
