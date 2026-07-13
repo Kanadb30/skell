@@ -2,18 +2,23 @@ import java.util.*;
 import java.nio.*;
 import java.io.*;
 
-HashSet<String> BUILT_IN = new HashSet<>();
-        BUILT_IN.add("echo");
-        BUILT_IN.add("exit");
-        BUILT_IN.add("type");
-String path = System.getenv("PATH");
-ArrayList<String> PATH_DIRS = new ArrayList<>(List.of(path.split(File.pathSeperator)));
 
 public class Main {
+
+    HashSet<String> BUILT_IN = new HashSet<>();
+    BUILT_IN.add("echo");
+    BUILT_IN.add("exit");
+    BUILT_IN.add("type");
+    String path = System.getenv("PATH");
+    ArrayList<String> PATH_DIRS = new ArrayList<>(List.of(path.split(File.pathSeparator)));
+
     public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
         while(true) {
             System.out.print("$ ");
-	        Scanner sc = new Scanner(System.in);
+            if(!sc.hasNextLine()) {
+                break;
+            }
 	        String cmd = sc.nextLine();
             if(cmd.equals("exit")) {
                 break;
@@ -32,6 +37,7 @@ public class Main {
 
 	        
         }
+        sc.close();
         
     }
 
