@@ -5,12 +5,9 @@ import java.io.*;
 
 public class Main {
 
-    HashSet<String> BUILT_IN = new HashSet<>();
-    BUILT_IN.add("echo");
-    BUILT_IN.add("exit");
-    BUILT_IN.add("type");
-    String path = System.getenv("PATH");
-    ArrayList<String> PATH_DIRS = new ArrayList<>(List.of(path.split(File.pathSeparator)));
+    static final HashSet<String> BUILT_IN = new HashSet<>(List.of("echo", "exit", "type"));
+    static final String path = System.getenv("PATH");
+    static final ArrayList<String> PATH_DIRS = new ArrayList<>(List.of(path.split(File.pathSeparator)));
 
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
@@ -47,7 +44,7 @@ public class Main {
         }
         for(String toSearch : PATH_DIRS ){
             File f = new File(toSearch, cmd);
-            if(f.exists() && f.isExecutable()){
+            if(f.exists() && f.canExecute()){
                 return cmd + " is " + f.getAbsolutePath();
             }
             
