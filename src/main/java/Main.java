@@ -27,12 +27,16 @@ public class Main {
             }
 
             else if(ARGS.get(0).equals("cd")){
+                if(ARGS.size() == 1){
+                    System.setProperty("user.dir", System.getProperty("user.home"));
+                    continue;
+                }
                 String errString = ARGS.get(1);
                 if(ARGS.get(1).startsWith("/")){
                     ARGS.set(1, ARGS.get(1).substring(1));
                 }
                 if(ARGS.size() > 1){
-                    if(new File(errString).isAbsolute()){
+                    if(new File(errString).isAbsolute() && new File(errString).isDirectory()){
                         System.setProperty("user.dir", errString);
                     }else{
                         ArrayList<String> pathToFollow = new ArrayList<>(List.of(ARGS.get(1).split("/")));
@@ -44,6 +48,7 @@ public class Main {
                                     currentDir = parentDir.getAbsolutePath();
                                 }else {
                                     System.out.println("cd: " + errString + ": No such file or directory");
+                                    break;
                                 }
                             }else if(segment.equals(".")){
                                 continue;
