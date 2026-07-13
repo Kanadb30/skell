@@ -17,19 +17,19 @@ public class Main {
                 break;
             }
 	        String cmd = sc.nextLine();
-            ArrayList<String> args = new ArrayList<>(List.of(cmd.split(" ")));
-            if(args.get(0).equals("exit")) {
+            ArrayList<String> ARGS = new ArrayList<>(List.of(cmd.split(" ")));
+            if (ARGS.get(0).equals("exit")) {
                 break;
                 
-            } else if(args.get(0).equals("echo")) {
-                System.out.println(String.join(" ", args.subList(1, args.size())));
+            } else if (ARGS.get(0).equals("echo")) {
+                System.out.println(String.join(" ", ARGS.subList(1, ARGS.size())));
 
-            } else if (args.get(0).equals("type ")) {
+            } else if  (ARGS.get(0).equals("type ")) {
                 String cmp_cmd = cmd.substring(5);
                 System.out.println(typeOf(cmp_cmd));
-            }else if (getAbsolutePath(args.get(0)) != null) {
+            }else if ((getAbsolutePath ARGS.get(0)) != null) {
 
-                ProcessBuilder pb = new ProcessBuilder(getAbsolutePath(args.get(0),args.get(1),args.get(2)));
+                ProcessBuilder pb = new ProcessBuilder(getAbsolutePath (ARGS.get(0) ARGS.get(1) ARGS.get(2)));
                 pb.inheritIO();
                 Process p = pb.start();
                 p.waitFor();
