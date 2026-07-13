@@ -16,16 +16,27 @@ public class Main {
             }
 	        String cmd = sc.nextLine();
             ArrayList<String> ARGS = new ArrayList<>(List.of(cmd.split(" ")));
+
             if(ARGS.get(0).equals("exit")) {
                 break;
                 
-            } else if(ARGS.get(0).equals("echo")) {
+            } 
+
+            else if(ARGS.get(0).equals("pwd")){
+                System.out.println(System.getProperty("user.dir"));
+            }
+            
+            else if(ARGS.get(0).equals("echo")) {
                 System.out.println(String.join(" ", ARGS.subList(1, ARGS.size())));
 
-            } else if (ARGS.get(0).equals("type")) {
+            } 
+            
+            else if (ARGS.get(0).equals("type")) {
                 String cmp_cmd = cmd.substring(5);
                 System.out.println(typeOf(cmp_cmd));
-            }else if (getAbsolutePath(ARGS.get(0)) != null) {
+            }
+            
+            else if (getAbsolutePath(ARGS.get(0)) != null) {
                 ProcessBuilder pb = new ProcessBuilder(ARGS);
                 pb.inheritIO();
                 Process p = pb.start();
