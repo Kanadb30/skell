@@ -5,7 +5,7 @@ import java.io.*;
 
 public class Main {
 
-    static final HashSet<String> BUILT_IN = new HashSet<>(List.of("echo", "exit", "type"));
+    static final HashSet<String> BUILT_IN = new HashSet<>(List.of("echo", "exit", "type", "pwd"));
 
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
