@@ -29,7 +29,6 @@ public class Main {
             else if(ARGS.get(0).equals("cd")){
                 String errString = ARGS.get(1);
                 if(ARGS.get(1).startsWith("/")){
-                    errString = ARGS.get(1);
                     ARGS.set(1, ARGS.get(1).substring(1));
                 }
                 if(ARGS.size() > 1){
