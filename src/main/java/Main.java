@@ -19,9 +19,9 @@ public class Main {
         LineReader reader = LineReaderBuilder.builder()
             .terminal(terminal)
             .history(new DefaultHistory())
-            .variable(LineReader.HISTORY_FILE, historyFile.toPath())
             .build();
         History HIS = reader.getHistory();
+        Builtin.history_r(historyFile.getAbsolutePath(), HIS);
         while(true) {
             String cmd;
             try {
@@ -85,6 +85,7 @@ public class Main {
 
 	        
         }
+        Builtin.history_w(historyFile.getAbsolutePath(), HIS);
         
     }
 
