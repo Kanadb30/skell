@@ -1,6 +1,6 @@
 import java.io.*;
 import java.util.*;
-import org.jline.reader;
+import org.jline.reader.LineReader;
 import org.jline.reader.History;
 import org.jline.reader.impl.history.DefaultHistory;
 import org.jline.terminal.*;
@@ -20,7 +20,7 @@ public class Builtin {
                 bw.write(cmd.line());
                 bw.newLine();
             }
-            reader.getHistory().purge(); // Clear the history after writing to the file
+            HIS.purge();
         } catch (IOException e) {
             System.out.println("Error writing history file: " + e.getMessage());
         }
@@ -32,7 +32,7 @@ public class Builtin {
                 bw.write(cmd.line());
                 bw.newLine();
             }
-            reader.getHistory().purge(); // Clear the history after appending to the file
+            HIS.purge();
         } catch (IOException e) {
             System.out.println("Error appending to history file: " + e.getMessage());
         }
