@@ -25,6 +25,17 @@ public class Builtin {
         }
     }
 
+    public static void history_a(String filepath, History HIS){
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(filepath, true))){
+            for (History.Entry cmd : HIS) {
+                bw.write(cmd.line());
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error appending to history file: " + e.getMessage());
+        }
+    }
+
     public static void history_r(String filePath, History HIS) {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
