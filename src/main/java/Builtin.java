@@ -25,7 +25,7 @@ public class Builtin {
         }
     }
 
-    public static void history_r(String filePath, LineReader.History HIS) {
+    public static void history_r(String filePath, History HIS) {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -36,7 +36,7 @@ public class Builtin {
         }
     }
 
-    public static void history(String n, LineReader.History HIS) {
+    public static void history(String n, History HIS) {
         int rows;
         if(n == null){
             rows = 0;
@@ -44,7 +44,7 @@ public class Builtin {
             rows = HIS.size() - Integer.parseInt(n);
         }
         int itr = 0;
-        for (LineReader.History.Entry cmd : HIS) {
+        for (History.Entry cmd : HIS) {
             if(rows > 0){
                 rows--;
                 continue;
