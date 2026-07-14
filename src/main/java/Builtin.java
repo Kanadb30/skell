@@ -1,6 +1,6 @@
 import java.io.*;
 import java.util.*;
-import org.jline.reader.LineReader.History;
+import org.jline.reader.LineReader;
 import org.jline.reader.impl.history.DefaultHistory;
 import org.jline.terminal.*;
 import java.time.Instant;
@@ -15,7 +15,7 @@ public class Builtin {
 
     public static void history_w(String filepath, LineReader.History HIS){
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(filepath))){
-            for (History.Entry cmd : HIS) {
+            for (LineReader.History.Entry cmd : HIS) {
                 bw.write(cmd.line());
                 bw.newLine();
             }
@@ -43,7 +43,7 @@ public class Builtin {
             rows = HIS.size() - Integer.parseInt(n);
         }
         int itr = 0;
-        for (History.Entry cmd : HIS) {
+        for (LineReader.History.Entry cmd : HIS) {
             if(rows > 0){
                 rows--;
                 continue;
