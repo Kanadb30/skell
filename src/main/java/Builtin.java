@@ -12,6 +12,17 @@ public class Builtin {
     // Add item manually: reader.getHistory().add(Instant.now(), "my-command");
     // Clear all history: reader.getHistory().purge();
 
+    public static void history_r(String filePath, LineReader reader) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                reader.getHistory().add(Instant.now(), line);
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading history file: " + e.getMessage());
+        }
+    }
+
     public static void history(String n, LineReader reader) {
         int rows;
         if(n == null){

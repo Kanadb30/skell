@@ -38,7 +38,9 @@ public class Main {
             else if(ARGS.get(0).equals("history")) {
                 if(ARGS.size() == 1){
                     Builtin.history(null, reader);
-                } else {
+                } else if(ARGS.get(1).equals("-r") && ARGS.size() == 3){
+                    Builtin.history_r(ARGS.get(2), reader);
+                }else{
                     Builtin.history(ARGS.get(1), reader);
                 }
             }
