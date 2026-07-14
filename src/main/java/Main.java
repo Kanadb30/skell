@@ -21,7 +21,10 @@ public class Main {
             .history(new DefaultHistory())
             .build();
         History HIS = reader.getHistory();
-        Builtin.history_r(historyFile.getAbsolutePath(), HIS);
+        if (historyFile != null){
+            Builtin.history_r(historyFile.getAbsolutePath(), HIS);
+        }
+        
         while(true) {
             String cmd;
             try {
@@ -85,7 +88,10 @@ public class Main {
 
 	        
         }
-        Builtin.history_w(historyFile.getAbsolutePath(), HIS);
+        if (historyFile != null){
+            Builtin.history_w(historyFile.getAbsolutePath(), HIS);
+        }
+        
         
     }
 
