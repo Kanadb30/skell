@@ -18,6 +18,7 @@ public class Main {
             .terminal(terminal)
             .history(new DefaultHistory())
             .build();
+        LineReader.History HIS = reader.getHistory();
         while(true) {
             String cmd;
             try {
@@ -37,11 +38,11 @@ public class Main {
 
             else if(ARGS.get(0).equals("history")) {
                 if(ARGS.size() == 1){
-                    Builtin.history(null, reader);
+                    Builtin.history(null, HIS);
                 } else if(ARGS.get(1).equals("-r") && ARGS.size() == 3){
-                    Builtin.history_r(ARGS.get(2), reader);
+                    Builtin.history_r(ARGS.get(2), HIS);
                 }else{
-                    Builtin.history(ARGS.get(1), reader);
+                    Builtin.history(ARGS.get(1), HIS);
                 }
             }
 

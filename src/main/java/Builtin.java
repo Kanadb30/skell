@@ -13,26 +13,37 @@ public class Builtin {
     // Add item manually: reader.getHistory().add(Instant.now(), "my-command");
     // Clear all history: reader.getHistory().purge();
 
-    public static void history_r(String filePath, LineReader reader) {
+    public static void history_w(String filepath, LineReader.History HIS){
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(filepath))){
+            for (History.Entry cmd : HIS) {
+                bw.write(cmd.line());
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error writing history file: " + e.getMessage());
+        }
+    }
+
+    public static void history_r(String filePath, LineReader.History HIS) {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
-                reader.getHistory().add(Instant.now(), line);
+                HIS.add(Instant.now(), line);
             }
         } catch (IOException e) {
             System.out.println("Error reading history file: " + e.getMessage());
         }
     }
 
-    public static void history(String n, LineReader reader) {
+    public static void history(String n, LineReader.History HIS) {
         int rows;
         if(n == null){
             rows = 0;
         } else {
-            rows = reader.getHistory().size() - Integer.parseInt(n);
+            rows = HIS.size() - Integer.parseInt(n);
         }
         int itr = 0;
-        for (History.Entry cmd : reader.getHistory()) {
+        for (History.Entry cmd : HIS) {
             if(rows > 0){
                 rows--;
                 continue;
