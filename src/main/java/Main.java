@@ -12,12 +12,14 @@ public class Main {
     //public static ArrayList<String> HIS = new ArrayList<>();
 
     static final HashSet<String> BUILT_IN = new HashSet<>(List.of("echo", "exit", "type", "pwd", "cd", "history"));
+    static final File historyFile = new File(System.getenv("HISTFILE"));
 
     public static void main(String[] args) throws Exception {
         Terminal terminal = TerminalBuilder.builder().system(true).build();
         LineReader reader = LineReaderBuilder.builder()
             .terminal(terminal)
             .history(new DefaultHistory())
+            .variable(LineReader.HISTORY_FILE, historyFile.toPath())
             .build();
         History HIS = reader.getHistory();
         while(true) {
