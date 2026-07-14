@@ -58,6 +58,7 @@ public class Main {
 
             else if(ARGS.get(0).equals("declare")){
                 if(ARGS.size() == 3 && ARGS.get(1).equals("-p")) Builtin.declare_p(ARGS.get(2));
+                else if(ARGS.size() == 2 && ARGS.get(1).contains("=")) Builtin.declare(ARGS.get(1));
             }
 
             else if(ARGS.get(0).equals("pwd")) Builtin.pwd();

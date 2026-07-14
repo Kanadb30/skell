@@ -12,7 +12,23 @@ public class Builtin {
     }
 
     public static void declare_p(String variable){
-        System.out.println("declare: " + variable + ": not found");
+        String value = System.getProperty(variable);
+        if (value != null) {
+            System.out.println("declare -- " + variable + "=\"" + value + "\"");
+        } else {
+            System.out.println("declare: " + variable + ": not found");
+        }
+    }
+
+    public static void declare(String variable){
+        String[] parts = variable.split("=", 2);
+        if (parts.length == 2) {
+            String name = parts[0];
+            String value = parts[1];
+            System.setProperty(name, value);
+        } else {
+            System.out.println("declare: " + variable + ": invalid format");
+        }
     }
 
     // Add item manually: reader.getHistory().add(Instant.now(), "my-command");
