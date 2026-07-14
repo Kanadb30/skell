@@ -2,6 +2,7 @@ import java.util.*;
 import java.nio.*;
 import java.io.*;
 import org.jline.reader.*;
+import org.jline.reader.LineReader;
 import org.jline.reader.impl.history.DefaultHistory;
 import org.jline.terminal.*;
 
@@ -41,6 +42,8 @@ public class Main {
                     Builtin.history(null, HIS);
                 } else if(ARGS.get(1).equals("-r") && ARGS.size() == 3){
                     Builtin.history_r(ARGS.get(2), HIS);
+                }else if(ARGS.get(1).equals("-w") && ARGS.size() == 3){
+                    Builtin.history_w(ARGS.get(2), HIS);
                 }else{
                     Builtin.history(ARGS.get(1), HIS);
                 }

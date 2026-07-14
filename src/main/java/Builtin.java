@@ -1,8 +1,8 @@
 import java.io.*;
 import java.util.*;
 import org.jline.reader.LineReader;
-// import org.jline.reader.impl.history.DefaultHistory;
-// import org.jline.terminal.*;
+import org.jline.reader.impl.history.DefaultHistory;
+import org.jline.terminal.*;
 import java.time.Instant;
 
 public class Builtin {
