@@ -1,6 +1,6 @@
 import java.io.*;
 import java.util.*;
-import org.jline.reader.LineReader;
+import org.jline.reader;
 import org.jline.reader.History;
 import org.jline.reader.impl.history.DefaultHistory;
 import org.jline.terminal.*;
