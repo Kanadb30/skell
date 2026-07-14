@@ -11,6 +11,10 @@ public class Builtin {
         System.out.println(System.getProperty("user.dir"));
     }
 
+    public static void declare_p(String variable){
+        System.out.println("declare: " + variable + ": not found");
+    }
+
     // Add item manually: reader.getHistory().add(Instant.now(), "my-command");
     // Clear all history: reader.getHistory().purge();
 
