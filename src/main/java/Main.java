@@ -36,6 +36,15 @@ public class Main {
             }
             //HIS.add(cmd);
             ArrayList<String> ARGS = new ArrayList<>(List.of(cmd.split(" ")));
+            for(int i = 1;i < ARGS.size();i++){
+                try{
+                    if(ARGS.get(i).startsWith("$")){
+                        ARGS.set(i, System.getProperty(ARGS.get(i).substring(1)));
+                    }
+                } catch (Exception e) {
+                    continue;
+                }
+            }
 
             if(ARGS.get(0).equals("exit")) {
                 break;
