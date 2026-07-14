@@ -19,7 +19,7 @@ public class Main {
             .terminal(terminal)
             .history(new DefaultHistory())
             .build();
-        LineReader.History HIS = reader.getHistory();
+        History HIS = reader.getHistory();
         while(true) {
             String cmd;
             try {

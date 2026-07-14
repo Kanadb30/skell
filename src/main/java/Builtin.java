@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.*;
 import org.jline.reader.LineReader;
+import org.jline.reader.History;
 import org.jline.reader.impl.history.DefaultHistory;
 import org.jline.terminal.*;
 import java.time.Instant;
@@ -13,9 +14,9 @@ public class Builtin {
     // Add item manually: reader.getHistory().add(Instant.now(), "my-command");
     // Clear all history: reader.getHistory().purge();
 
-    public static void history_w(String filepath, LineReader.History HIS){
+    public static void history_w(String filepath, History HIS){
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(filepath))){
-            for (LineReader.History.Entry cmd : HIS) {
+            for (History.Entry cmd : HIS) {
                 bw.write(cmd.line());
                 bw.newLine();
             }
