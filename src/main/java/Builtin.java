@@ -37,7 +37,7 @@ public class Builtin {
                 rows--;
                 continue;
             }
-            System.out.println(cmd.index()+1 + " " + cmd);
+            System.out.println(cmd.index()+1 + " " + cmd.line());
         }
     }
 
