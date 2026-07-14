@@ -12,9 +12,9 @@ public class Main {
     //public static ArrayList<String> HIS = new ArrayList<>();
 
     static final HashSet<String> BUILT_IN = new HashSet<>(List.of("echo", "exit", "type", "pwd", "cd", "history"));
-    static final File historyFile = new File(System.getenv("HISTFILE"));
 
     public static void main(String[] args) throws Exception {
+        File historyFile = new File(System.getenv("HISTFILE"));
         Terminal terminal = TerminalBuilder.builder().system(true).build();
         LineReader reader = LineReaderBuilder.builder()
             .terminal(terminal)
