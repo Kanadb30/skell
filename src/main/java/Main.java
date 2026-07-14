@@ -14,7 +14,7 @@ public class Main {
     static final HashSet<String> BUILT_IN = new HashSet<>(List.of("echo", "exit", "type", "pwd", "cd", "history"));
 
     public static void main(String[] args) throws Exception {
-        File historyFile = new File(System.getenv("HISTFILE"));
+        String historyFile = System.getenv("HISTFILE");
         Terminal terminal = TerminalBuilder.builder().system(true).build();
         LineReader reader = LineReaderBuilder.builder()
             .terminal(terminal)
@@ -22,7 +22,7 @@ public class Main {
             .build();
         History HIS = reader.getHistory();
         if (historyFile != null){
-            Builtin.history_r(historyFile.getAbsolutePath(), HIS);
+            Builtin.history_r(historyFile, HIS);
         }
         
         while(true) {
@@ -89,7 +89,7 @@ public class Main {
 	        
         }
         if (historyFile != null){
-            Builtin.history_w(historyFile.getAbsolutePath(), HIS);
+            Builtin.history_w(historyFile, HIS);
         }
         
         
