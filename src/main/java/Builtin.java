@@ -6,21 +6,23 @@ public class Builtin {
         System.out.println(System.getProperty("user.dir"));
     }
 
-    public static void history(String n) {
+    // Add item manually: reader.getHistory().add(Instant.now(), "my-command");
+    // Clear all history: reader.getHistory().purge();
+
+    public static void history(String n, LineReader reader) {
         int rows;
         if(n == null){
             rows = 0;
         } else {
-            rows = Main.HIS.size() - Integer.parseInt(n);
+            rows = reader.getHistory().size() - Integer.parseInt(n);
         }
         int itr = 0;
-        for (String cmd : Main.HIS) {
-            itr++;
+        for (History.Entry cmd : reader.getHistory()) {
             if(rows > 0){
                 rows--;
                 continue;
             }
-            System.out.println(itr + " " + cmd);
+            System.out.println(cmd.index() + " " + cmd);
         }
     }
 

@@ -8,7 +8,7 @@ import org.jline.terminal.*;
 
 public class Main {
 
-    public static ArrayList<String> HIS = new ArrayList<>();
+    //public static ArrayList<String> HIS = new ArrayList<>();
 
     static final HashSet<String> BUILT_IN = new HashSet<>(List.of("echo", "exit", "type", "pwd", "cd", "history"));
 
@@ -27,7 +27,7 @@ public class Main {
             } catch (UserInterruptException e) {
                 continue;
             }
-            HIS.add(cmd);
+            //HIS.add(cmd);
             ArrayList<String> ARGS = new ArrayList<>(List.of(cmd.split(" ")));
 
             if(ARGS.get(0).equals("exit")) {
@@ -37,9 +37,9 @@ public class Main {
 
             else if(ARGS.get(0).equals("history")) {
                 if(ARGS.size() == 1){
-                    Builtin.history(null);
+                    Builtin.history(null, reader);
                 } else {
-                    Builtin.history(ARGS.get(1));
+                    Builtin.history(ARGS.get(1), reader);
                 }
             }
 
