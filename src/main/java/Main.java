@@ -44,6 +44,8 @@ public class Main {
                     Builtin.history_r(ARGS.get(2), HIS);
                 }else if(ARGS.get(1).equals("-w") && ARGS.size() == 3){
                     Builtin.history_w(ARGS.get(2), HIS);
+                }else if(ARGS.get(1).equals("-a") && ARGS.size() == 3){
+                    Builtin.history_a(ARGS.get(2), HIS);
                 }else{
                     Builtin.history(ARGS.get(1), HIS);
                 }
