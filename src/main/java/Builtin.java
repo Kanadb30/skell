@@ -25,6 +25,10 @@ public class Builtin {
         if (parts.length == 2) {
             String name = parts[0];
             String value = parts[1];
+            if(!name.startsWith("[a-zA-Z_]")){
+                System.out.println("declare: `" + variable + "`: not a valid identifier");
+                return;
+            }
             System.setProperty(name, value);
         } else {
             System.out.println("declare: " + variable + ": invalid format");
