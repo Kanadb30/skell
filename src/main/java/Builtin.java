@@ -25,7 +25,7 @@ public class Builtin {
         if (parts.length == 2) {
             String name = parts[0];
             String value = parts[1];
-            if(!name.startsWith("[a-zA-Z_]")){
+            if(!name.matches("[a-zA-Z_][a-zA-Z0-9_`~!@#$%^&*()-+={[;:'\"]}<>?*")){
                 System.out.println("declare: `" + variable + "`: not a valid identifier");
                 return;
             }
