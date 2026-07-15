@@ -6,7 +6,7 @@ import static src.main.java.Main.DECLARE_PAIR;
 
 public class declare{
     public static void declare_p(String variable){
-        String value = System.getProperty(variable);
+        String value = DECLARE_PAIR.getValue(variable);
         if (value != null) {
             System.out.println("declare -- " + variable + "=\"" + value + "\"");
         } else {
