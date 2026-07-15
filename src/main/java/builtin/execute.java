@@ -29,19 +29,26 @@ public class execute{
                 }
                 break;
             case "history":
+                boolean hasUserArg = parsedCmd.Args.size() > 0 && !parsedCmd.Args.get(0).equals(parsedCmd.cmd);
                 switch(parsedCmd.flag){
                     case 'r':
-                        history.history_r(parsedCmd.Args.get(0), HIS);
+                        if(hasUserArg){
+                            history.history_r(parsedCmd.Args.get(0), HIS);
+                        }
                         break;
                     case 'w':
-                        history.history_w(parsedCmd.Args.get(0), HIS);
+                        if(hasUserArg){
+                            history.history_w(parsedCmd.Args.get(0), HIS);
+                        }
                         break;
                     case 'a':
-                        history.history_a(parsedCmd.Args.get(0), HIS);
+                        if(hasUserArg){
+                            history.history_a(parsedCmd.Args.get(0), HIS);
+                        }
                         break;
                     default:
-                        if(parsedCmd.Args.size() == 0){
-                            history.history("", HIS);
+                        if(!hasUserArg){
+                            history.history("0", HIS);
                         } else {
                             history.history(parsedCmd.Args.get(0), HIS);
                         }
