@@ -7,9 +7,6 @@ import org.jline.reader.History;
 public class execute{
     public static void execute(custom.cmd parsedCmd, History HIS){
         switch(parsedCmd.cmd){
-            case "break":
-            case "exit":
-                break;
             case "echo":
                 echo.echo(parsedCmd.Args.toArray(new String[0]));
                 break;

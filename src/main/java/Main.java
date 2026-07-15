@@ -45,7 +45,10 @@ public class Main {
             custom.cmd parsedCmd = parse.parse(cmd);
             if(parsedCmd == null) {
                 continue;
-            } else if(parsedCmd.isBuiltin && !parsedCmd.cmd.equals("type")) {
+            }else if(parsedCmd.cmd.equals("exit")) {
+                break;
+            } 
+            else if(parsedCmd.isBuiltin && !parsedCmd.cmd.equals("type")) {
                 parsedCmd.Args = expandArgs(parsedCmd.Args);
                 execute.execute(parsedCmd, HIS);
             }
