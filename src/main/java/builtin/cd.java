@@ -21,7 +21,7 @@ public class cd{
                     if (parentDir != null) {
                         currentDir = parentDir.getAbsolutePath();
                     } else {
-                        System.out.println("cd: " + path + ": No such file or directory");
+                        System.out.println("cd: " + path.get(0) + ": No such file or directory");
                         break;
                     }
                 } else if (segment.equals(".")) {
@@ -31,7 +31,7 @@ public class cd{
                     if (f.exists() && f.isDirectory()) {
                         currentDir = f.getAbsolutePath();
                     } else {
-                        System.out.println("cd: " + path + ": No such file or directory");
+                        System.out.println("cd: " + path.get(0) + ": No such file or directory");
                         break;
                     }
                 }

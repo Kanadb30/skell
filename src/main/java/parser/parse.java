@@ -31,6 +31,10 @@ public class parse{
             }
         }
 
+        if(breakPoint == 0){
+            breakPoint = input.length();
+        }
+
         input = input.substring(breakPoint).trim();
 
         if(BUILT_IN.contains(cmd)){
@@ -87,6 +91,8 @@ public class parse{
             }
             hasPath = true;
         }
+
+        
 
         return new custom.cmd(cmd, isBuiltin, flag, Args, hasPath, isPathAbsolute);
     }
