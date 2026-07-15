@@ -41,7 +41,7 @@ public class execute{
                         break;
                     default:
                         if(parsedCmd.Args.size() == 0){
-                            history.history(null, HIS);
+                            history.history("", HIS);
                         } else {
                             history.history(parsedCmd.Args.get(0), HIS);
                         }
