@@ -27,6 +27,7 @@ public class Main {
             .terminal(terminal)
             .history(new DefaultHistory())
             .build();
+        reader.unsetOpt(LineReader.Option.HISTORY_IGNORE_DUPS);
         History HIS = reader.getHistory();
         if (historyFile != null){
             builtin.history.history_r(historyFile, HIS);
