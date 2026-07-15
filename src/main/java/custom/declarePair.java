@@ -12,6 +12,14 @@ public class declarePair {
         this.declareSet = declareSet;
     }
 
+    public void put(String variable, String value){
+        addVariable(variable, value);
+    }
+
+    public String getValue(String variable){
+        return declareMap.get(variable);
+    }
+
     public void addVariable(String variable, String value){
         declareMap.put(variable, value);
         declareSet.add(variable);

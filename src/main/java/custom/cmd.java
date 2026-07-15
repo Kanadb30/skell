@@ -8,22 +8,22 @@ public class cmd{
     public char flag;
     public ArrayList<String> Args;
     public boolean hasPath;
-    public boolean isPathAbosulte;
+    public boolean isPathAbsolute;
 
-    public cmd(String cmd, boolean isBuiltin, char flag, ArrayList<String> Args, boolean hasPath, boolean isPathAbosulte){
+    public cmd(String cmd, boolean isBuiltin, char flag, ArrayList<String> Args, boolean hasPath, boolean isPathAbsolute){
         this.cmd = cmd;
         this.isBuiltin = isBuiltin;
         this.flag = flag;
         this.Args = Args;
         this.hasPath = hasPath;
-        this.isPathAbosulte = isPathAbosulte;
+        this.isPathAbsolute = isPathAbsolute;
     }
 
-    public cmd(String cmd, boolean isBuiltin, ArrayList<String> Args, boolean hasPath, boolean isPathAbosulte){
+    public cmd(String cmd, boolean isBuiltin, ArrayList<String> Args, boolean hasPath, boolean isPathAbsolute){
         this.cmd = cmd;
         this.isBuiltin = isBuiltin;
         this.Args = Args;
         this.hasPath = hasPath;
-        this.isPathAbosulte = isPathAbosulte;
+        this.isPathAbsolute = isPathAbsolute;
     }
 }

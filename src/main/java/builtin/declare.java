@@ -2,7 +2,7 @@ package builtin;
 
 import java.util.*;
 import custom.cmd;
-import src.main.java.Main.DECLARE_PAIR;
+import static src.main.java.Main.DECLARE_PAIR;
 
 public class declare{
     public static void declare_p(String variable){

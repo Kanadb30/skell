@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.jline.reader.History;
 
 public class execute{
-    public void execute(custom.cmd parsedCmd, History HIS){
+    public static void execute(custom.cmd parsedCmd, History HIS){
         switch(parsedCmd.cmd){
             case "break":
             case "exit":

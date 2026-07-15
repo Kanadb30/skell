@@ -1,19 +1,20 @@
 package parser;
 
 import custom.cmd;
+import java.io.File;
 import java.util.ArrayList;
-import src.main.java.Main.BUILT_IN;
-import src.main.java.Main.DECLARE_PAIR;
+import static src.main.java.Main.BUILT_IN;
+import static src.main.java.Main.DECLARE_PAIR;
 
 public class parse{
     public static custom.cmd parse(String input){
 
         String cmd;
-        boolean isBuiltin;
-        char flag;
+        boolean isBuiltin = false;
+        char flag = ' ';
         ArrayList<String> Args = new ArrayList<>();
-        boolean hasPath;
-        boolean isPathAbsolute;
+        boolean hasPath = false;
+        boolean isPathAbsolute = false;
 
         int breakPoint = 0;
 
@@ -81,7 +82,7 @@ public class parse{
         }
 
         if(Args.size() == 1 && cmd.equals("cd")){
-            if(Args.get(0).isAbsolutePath()){
+            if(new File(Args.get(0)).isAbsolutePath()){
                 isPathAbsolute = true;
             }
             hasPath = true;

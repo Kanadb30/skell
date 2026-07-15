@@ -46,7 +46,7 @@ public class Main {
             if(parsedCmd == null) {
                 continue;
             } else if(parsedCmd.isBuiltin){
-                builtin.execute(parsedCmd, HIS);
+                execute.execute(parsedCmd, HIS);
             }
             
             else if (parsedCmd.cmd.equals("type")) {

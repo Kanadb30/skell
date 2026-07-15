@@ -13,7 +13,7 @@ public class cd{
         }else if(path.size() == 1 && parsedCmd.isPathAbsolute && new File(path.get(0)).isDirectory()) {
             System.setProperty("user.dir", path.get(0));
         }else if(path.size() == 1){
-            String[] pathSegments = path.split("/");
+            String[] pathSegments = path.get(0).split("/");
             String currentDir = System.getProperty("user.dir");
             for (String segment : pathSegments) {
                 if (segment.equals("..")) {
