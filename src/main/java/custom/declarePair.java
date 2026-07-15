@@ -1,8 +1,11 @@
 package custom;
 
+import java.util.HashMap;
+import java.util.HashSet;
+
 public class declarePair {
-    HashMap<String, String> declareMap;
-    HashSet<String> declareSet;
+    public HashMap<String, String> declareMap;
+    public HashSet<String> declareSet;
 
     public declarePair(HashMap<String, String> declareMap){
         this.declareMap = declareMap;

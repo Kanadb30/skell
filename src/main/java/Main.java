@@ -1,3 +1,5 @@
+package java;
+
 import java.util.*;
 import java.nio.*;
 import java.io.*;
@@ -7,6 +9,7 @@ import org.jline.reader.impl.history.DefaultHistory;
 import org.jline.terminal.*;
 import builtin.*;
 import custom.declarePair;
+import parser.parse;
 
 
 public class Main {
@@ -26,7 +29,7 @@ public class Main {
             .build();
         History HIS = reader.getHistory();
         if (historyFile != null){
-            Builtin.history_r(historyFile, HIS);
+            builtin.history.history_r(historyFile, HIS);
         }
         
         while(true) {
@@ -43,7 +46,7 @@ public class Main {
             if(parsedCmd == null) {
                 continue;
             } else if(parsedCmd.isBuiltin){
-                Builtin.execute(parsedCmd, HIS);
+                builtin.execute(parsedCmd, HIS);
             }
             
             else if (parsedCmd.cmd.equals("type")) {
@@ -65,7 +68,7 @@ public class Main {
 	        
         }
         if (historyFile != null){
-            Builtin.history_w(historyFile, HIS);
+            builtin.history.history_w(historyFile, HIS);
         }
         
         
