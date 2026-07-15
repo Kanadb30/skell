@@ -46,6 +46,7 @@ public class Main {
             if(parsedCmd == null) {
                 continue;
             } else if(parsedCmd.isBuiltin){
+                parsedCmd.Args = expandArgs(parsedCmd.Args);
                 execute.execute(parsedCmd, HIS);
             }
             
@@ -55,7 +56,11 @@ public class Main {
             }
             
             else if (getAbsolutePath(parsedCmd.cmd) != null) {
-                ProcessBuilder pb = new ProcessBuilder(parsedCmd.Args);
+                ArrayList<String> expandedArgs = expandArgs(parsedCmd.Args);
+                ArrayList<String> command = new ArrayList<>();
+                command.add(getAbsolutePath(parsedCmd.cmd));
+                command.addAll(expandedArgs);
+                ProcessBuilder pb = new ProcessBuilder(command);
                 pb.inheritIO();
                 Process p = pb.start();
                 p.waitFor();
@@ -97,5 +102,33 @@ public class Main {
             
         }
         return null;
+    }
+
+    private static ArrayList<String> expandArgs(ArrayList<String> args){
+        ArrayList<String> expandedArgs = new ArrayList<>();
+        for(String arg : args){
+            String expandedArg = arg;
+            int start = 0;
+            while(start < expandedArg.length()){
+                int dollarIndex = expandedArg.indexOf('$', start);
+                if(dollarIndex == -1){
+                    break;
+                }
+                int end = dollarIndex + 1;
+                while(end < expandedArg.length() && (Character.isLetterOrDigit(expandedArg.charAt(end)) || expandedArg.charAt(end) == '_')){
+                    end++;
+                }
+                String variableName = expandedArg.substring(dollarIndex + 1, end);
+                String value = DECLARE_PAIR.getValue(variableName);
+                if(value != null){
+                    expandedArg = expandedArg.substring(0, dollarIndex) + value + expandedArg.substring(end);
+                    start = dollarIndex + value.length();
+                } else {
+                    start = end;
+                }
+            }
+            expandedArgs.add(expandedArg);
+        }
+        return expandedArgs;
     }
 }
