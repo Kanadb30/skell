@@ -61,7 +61,7 @@ public class parse{
         }
 
         for(String arg : Args){
-            if(arg.contains("\$")){
+            if(arg.contains("$")){
                 for(int i = 0;i < arg.length(); i++){
                     if(arg.charAt(i) == '$'){
                         String varName = "";

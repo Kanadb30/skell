@@ -1,6 +1,6 @@
 package builtin;
 
-iport java.util.*;
+import java.util.*;
 
 public class pwd {
     public static void pwd() {

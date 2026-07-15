@@ -46,13 +46,13 @@ public class Main {
                 Builtin.execute(parsedCmd, HIS);
             }
             
-            else if (ARGS.get(0).equals("type")) {
-                String cmp_cmd = cmd.substring(5);
+            else if (parsedCmd.cmd.equals("type")) {
+                String cmp_cmd = parsedCmd.Args.get(0);
                 System.out.println(typeOf(cmp_cmd));
             }
             
-            else if (getAbsolutePath(ARGS.get(0)) != null) {
-                ProcessBuilder pb = new ProcessBuilder(ARGS);
+            else if (getAbsolutePath(parsedCmd.cmd) != null) {
+                ProcessBuilder pb = new ProcessBuilder(parsedCmd.Args);
                 pb.inheritIO();
                 Process p = pb.start();
                 p.waitFor();
