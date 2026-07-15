@@ -7,9 +7,9 @@ public class declarePair {
     public HashMap<String, String> declareMap;
     public HashSet<String> declareSet;
 
-    public declarePair(HashMap<String, String> declareMap){
+    public declarePair(HashMap<String, String> declareMap, HashSet<String> declareSet) {
         this.declareMap = declareMap;
-        this.declareSet = new HashSet<>();
+        this.declareSet = declareSet;
     }
 
     public void addVariable(String variable, String value){

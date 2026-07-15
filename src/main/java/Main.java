@@ -16,7 +16,7 @@ public class Main {
 
     //public static ArrayList<String> HIS = new ArrayList<>();
 
-    public static declarePair DECLARE_PAIR = new declarePair(new HashMap<>());
+    public static declarePair DECLARE_PAIR = new declarePair(new HashMap<>(), new HashSet<>());
 
     public static final HashSet<String> BUILT_IN = new HashSet<>(List.of("echo", "exit", "type", "pwd", "cd", "history", "declare"));
 

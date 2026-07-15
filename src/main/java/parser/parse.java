@@ -2,8 +2,8 @@ package parser;
 
 import custom.cmd;
 import java.util.ArrayList;
-import java.Main.BUILT_IN;
-import java.Main.DECLARE_PAIR;
+import src.main.java.Main.BUILT_IN;
+import src.main.java.Main.DECLARE_PAIR;
 
 public class parse{
     public static custom.cmd parse(String input){
