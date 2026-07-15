@@ -5,13 +5,17 @@ import org.jline.reader.*;
 import org.jline.reader.LineReader;
 import org.jline.reader.impl.history.DefaultHistory;
 import org.jline.terminal.*;
+import builtin.*;
+import custom.declarePair;
 
 
 public class Main {
 
     //public static ArrayList<String> HIS = new ArrayList<>();
 
-    static final HashSet<String> BUILT_IN = new HashSet<>(List.of("echo", "exit", "type", "pwd", "cd", "history", "declare"));
+    public static declarePair DECLARE_PAIR = new declarePair(new HashMap<>());
+
+    public static final HashSet<String> BUILT_IN = new HashSet<>(List.of("echo", "exit", "type", "pwd", "cd", "history", "declare"));
 
     public static void main(String[] args) throws Exception {
         String historyFile = System.getenv("HISTFILE");
@@ -35,54 +39,12 @@ public class Main {
                 continue;
             }
             //HIS.add(cmd);
-            ArrayList<String> ARGS = new ArrayList<>(List.of(cmd.split(" ")));
-            for(int i = 1;i < ARGS.size();i++){
-                try{
-                    if(ARGS.get(i).startsWith("$")){
-                        ARGS.set(i, System.getProperty(ARGS.get(i).substring(1)));
-                    }
-                } catch (Exception e) {
-                    continue;
-                }
+            custom.cmd parsedCmd = parse.parse(cmd);
+            if(parsedCmd == null) {
+                continue;
+            } else if(parsedCmd.isBuiltin){
+                Builtin.execute(parsedCmd, HIS);
             }
-
-            if(ARGS.get(0).equals("exit")) {
-                break;
-                
-            } 
-
-            else if(ARGS.get(0).equals("history")) {
-                if(ARGS.size() == 1){
-                    Builtin.history(null, HIS);
-                } else if(ARGS.get(1).equals("-r") && ARGS.size() == 3){
-                    Builtin.history_r(ARGS.get(2), HIS);
-                }else if(ARGS.get(1).equals("-w") && ARGS.size() == 3){
-                    Builtin.history_w(ARGS.get(2), HIS);
-                }else if(ARGS.get(1).equals("-a") && ARGS.size() == 3){
-                    Builtin.history_a(ARGS.get(2), HIS);
-                }else{
-                    Builtin.history(ARGS.get(1), HIS);
-                }
-            }
-
-            else if(ARGS.get(0).equals("declare")){
-                if(ARGS.size() == 3 && ARGS.get(1).equals("-p")) Builtin.declare_p(ARGS.get(2));
-                else if(ARGS.size() == 2 && ARGS.get(1).contains("=")) Builtin.declare(ARGS.get(1));
-            }
-
-            else if(ARGS.get(0).equals("pwd")) Builtin.pwd();
-
-            else if(ARGS.get(0).equals("cd")) {
-                if(ARGS.size() == 1){
-                    Builtin.cd("~");
-                } else {
-                    Builtin.cd(ARGS.get(1));
-                }
-            }
-
-            else if(ARGS.get(0).equals("echo")) {
-                Builtin.echo(ARGS.toArray(new String[0]));
-            } 
             
             else if (ARGS.get(0).equals("type")) {
                 String cmp_cmd = cmd.substring(5);
