@@ -82,7 +82,7 @@ public class parse{
         }
 
         if(Args.size() == 1 && cmd.equals("cd")){
-            if(new File(Args.get(0)).isAbsolutePath()){
+            if(new File(Args.get(0)).isAbsolute()){
                 isPathAbsolute = true;
             }
             hasPath = true;
