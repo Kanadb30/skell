@@ -42,7 +42,7 @@ public class history {
 
     public static void history(String n, History HIS) {
         int rows;
-        if(n == null){
+        if(n == ""){
             rows = 0;
         } else {
             rows = HIS.size() - Integer.parseInt(n);
