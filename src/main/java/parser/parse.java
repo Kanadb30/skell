@@ -97,6 +97,9 @@ public class parse{
                             String value = DECLARE_PAIR.getValue(varName);
                             if(value != null){
                                 arg = arg.replace("$" + varName, value);
+                            }else{
+                                arg = arg.replace("$" + varName, "");
+                                i -= 2;
                             }
                             i++;
                         }
