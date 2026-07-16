@@ -102,7 +102,7 @@ public class parse{
                             }
                             itr++;
                         }
-                        if(arg.charAt(i) == "$" && DECLARE_PAIR.getValue(arg.substring(i+1, arg.length())).isEmpty()){
+                        if(arg.charAt(i) == '$' && DECLARE_PAIR.getValue(arg.substring(i+1, arg.length())) == null){
                             arg = arg.substring(0, i);
                             i--;
                         }
