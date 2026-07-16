@@ -99,7 +99,6 @@ public class parse{
                                 arg = arg.replace("$" + varName, value);
                             }else{
                                 arg = arg.replace("$" + varName, "");
-                                i -= 2;
                             }
                             i++;
                         }
