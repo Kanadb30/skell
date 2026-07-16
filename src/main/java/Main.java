@@ -61,7 +61,7 @@ public class Main {
             else if (getAbsolutePath(parsedCmd.cmd) != null) {
                 ArrayList<String> command = new ArrayList<>();
                 command.add(parsedCmd.cmd);
-                command.addAll(expandedArgs);
+                command.addAll(parsedCmd.Args);
                 ProcessBuilder pb = new ProcessBuilder(command);
                 pb.inheritIO();
                 Process p = pb.start();
