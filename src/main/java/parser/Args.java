@@ -81,5 +81,7 @@ public class Args{
             seenDollar = false;
             seenDollarInBrackets = false;
         }
+
+        Args.removeIf(arg::isEmpty);
     }
 }
