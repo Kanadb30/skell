@@ -12,9 +12,13 @@ public class Args{
         boolean tokenStarted = false;
         boolean seenDollar = false;
         boolean seenDollarInBrackets = false;
+        boolean seenBackslash = false;
 
         for( char token : input.toCharArray()){
-            if(token == ' ' && !inSingleQuotes && !inDoubleQuotes){
+            if(token == '\\' && !inSingleQuotes && !inDubleQuotes && !seenBackSlash){
+                seenBackslash = true;
+                tokenStarted = true;
+            }else if(token == ' ' && !inSingleQuotes && !inDoubleQuotes && !seenBackslash){
                 if(tokenStarted && currentArg.length() > 0 && !seenDollar && !seenDollarInBrackets){
                     Args.add(currentArg.toString());
                     currentArg.setLength(0);
@@ -33,19 +37,19 @@ public class Args{
                     seenDollar = false;
                     seenDollarInBrackets = false;
                 }
-            }else if(token == '\'' && !inDoubleQuotes){
+            }else if(token == '\'' && !inDoubleQuotes && !seenBackslash){
                 inSingleQuotes = !inSingleQuotes;
                 tokenStarted = true;
-            }else if(token == '\"' && !inSingleQuotes){
+            }else if(token == '\"' && !inSingleQuotes && !seenBackslash){
                 inDoubleQuotes = !inDoubleQuotes;
                 tokenStarted = true;
-            }else if(token == '$' && !inSingleQuotes){
+            }else if(token == '$' && !inSingleQuotes && !seenBackslash){
                 seenDollar = true;
                 tokenStarted = true;
-            }else if(token == '{' && seenDollar && !inSingleQuotes){
+            }else if(token == '{' && seenDollar && !inSingleQuotes && !seenBackslash){
                 seenDollarInBrackets = true;
                 tokenStarted = true;
-            }else if(token == '}' && seenDollarInBrackets && !inSingleQuotes){
+            }else if(token == '}' && seenDollarInBrackets && !inSingleQuotes && !seenBackslash){
                 String varValue = DECLARE_PAIR.getValue(currentVar.toString());
                 if(varValue != null){
                     currentArg.append(varValue);
@@ -60,6 +64,9 @@ public class Args{
                     currentVar.append(token);
                 }else{
                     currentArg.append(token);
+                }
+                if(seenBackslash){
+                    seenBackslash = false;
                 }
             }
         }
