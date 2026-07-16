@@ -82,7 +82,8 @@ public class parse{
                             String varName = arg.substring(i+2, endIndex);
                             String value = DECLARE_PAIR.getValue(varName);
                             if(value != null){
-                                arg = arg.replace("${" + varName + "}", value);
+                                arg = arg.substring(0, i) + value + arg.substring(endIndex+1);
+                                i += value.length() - 1;
                             }
                         }
                     }else if(arg.charAt(i) == '$'){
