@@ -82,6 +82,6 @@ public class Args{
             seenDollarInBrackets = false;
         }
 
-        Args.removeIf(String arg -> arg.isEmpty());
+        Args.removeIf(arg -> arg.isEmpty());
     }
 }
