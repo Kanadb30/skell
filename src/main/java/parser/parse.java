@@ -132,16 +132,37 @@ public class parse{
     private static int checkSingleQuote(String input, int i, String toAdd, ArrayList<String> Args){
         int errRet = i;
         i++;
+        int k;
+        boolean flag = false;
         while(i < input.length() && input.charAt(i) != '\''){
             toAdd += input.charAt(i);
             i++;
+        }
+        if(i < input.length() && input.charAt(i) != ' '){
+            for(int j = i+1; j < input.length(); j++){
+                if(input.charAt(j) == '\''){
+                    flag = true;
+                    k = checkSingleQuote(input, j, toAdd, Args);
+
+                }else if(input.charAt(j) == ' '){
+                    i = j;
+                    break;
+                }else{
+                    toAdd += input.charAt(j);
+                }
+            }
         }
         if(i == input.length()){
             //System.out.println("Error: Unmatched single quote");
             return errRet;
         }
-        Args.add(toAdd);
-        return i;
+        if(!flag){
+            Args.add(toAdd);
+            return i; 
+        }
+        return k;
+        
+        
     }
 
 
