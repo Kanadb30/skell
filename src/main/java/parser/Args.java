@@ -1,7 +1,7 @@
 package parser;
 
 import java.util.*;
-import src.main.java.Main.DECLARE_PAIR;
+import static src.main.java.Main.DECLARE_PAIR;
 
 public class Args{
     public static ArrayList<String> ParseArgs(String input, ArrayList<String> Args){
@@ -11,11 +11,11 @@ public class Args{
         boolean inDoubleQuotes = false;
         boolean tokenStarted = false;
         boolean seenDollar = false;
-        boolean seenDollarInBracktes = false;
+        boolean seenDollarInBrackets = false;
 
         for( char token : input.toCharArray()){
             if(token == ' ' && !inSingleQuotes && !inDoubleQuotes){
-                if(tokenStarted && currentArg.length() > 0 && !seenDollar && !seenDollarInBracktes){
+                if(tokenStarted && currentArg.length() > 0 && !seenDollar && !seenDollarInBrackets){
                     Args.add(currentArg.toString());
                     currentArg.setLength(0);
                     tokenStarted = false;
