@@ -132,7 +132,7 @@ public class parse{
     private static int checkSingleQuote(String input, int i, String toAdd, ArrayList<String> Args){
         int errRet = i;
         i++;
-        int k;
+        int k = i;
         boolean flag = false;
         while(i < input.length() && input.charAt(i) != '\''){
             toAdd += input.charAt(i);
