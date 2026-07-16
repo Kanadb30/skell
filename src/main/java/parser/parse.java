@@ -12,7 +12,7 @@ public class parse{
         String cmd;
         boolean isBuiltin = false;
         char flag = ' ';
-        ArrayList<String> Args = new ArrayList<>();
+        ArrayList<String> args = new ArrayList<>();
         boolean hasPath = false;
         boolean isPathAbsolute = false;
 
@@ -49,8 +49,8 @@ public class parse{
             flag = ' ';
         }
         
-        Args.ParseArgs(input, Args);
+        Args.ParseArgs(input, args);
         
-        return new custom.cmd(cmd, isBuiltin, flag, Args, hasPath, isPathAbsolute);
+        return new custom.cmd(cmd, isBuiltin, flag, args, hasPath, isPathAbsolute);
     }
 }
