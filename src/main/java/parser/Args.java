@@ -4,7 +4,7 @@ import java.util.*;
 import static src.main.java.Main.DECLARE_PAIR;
 
 public class Args{
-    public static ArrayList<String> ParseArgs(String input, ArrayList<String> Args){
+    public static void ParseArgs(String input, ArrayList<String> Args){
         StringBuilder currentArg = new StringBuilder();
         StringBuilder currentVar = new StringBuilder();
         boolean inSingleQuotes = false;
