@@ -48,21 +48,27 @@ public class parse{
             isBuiltin = false;
             flag = ' ';
         }
-        String toAdd = "";
+        StringBuilder currentArg = new StringBuilder();
+        boolean inSingleQuote = false;
+        boolean tokenStarted = false;
         for(int i = 0;i < input.length(); i++){
-            if(input.charAt(i) == '\''){
-                i = checkSingleQuote(input, i, toAdd, Args);
-            }else if(input.charAt(i) == ' '){
-                if(toAdd.length() > 0){
-                    Args.add(toAdd);
-                    toAdd = "";
+            char ch = input.charAt(i);
+            if(ch == '\''){
+                inSingleQuote = !inSingleQuote;
+                tokenStarted = true;
+            }else if(ch == ' ' && !inSingleQuote){
+                if(tokenStarted){
+                    Args.add(currentArg.toString());
+                    currentArg.setLength(0);
+                    tokenStarted = false;
                 }
             }else{
-                toAdd += input.charAt(i);
+                currentArg.append(ch);
+                tokenStarted = true;
             }
         }
-        if(toAdd.length() > 0){
-            Args.add(toAdd);
+        if(tokenStarted){
+            Args.add(currentArg.toString());
         }
         int argIndex = 0;
         for(String arg : Args){
