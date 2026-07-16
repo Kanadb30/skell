@@ -110,6 +110,8 @@ public class parse{
             argIndex++;
         }
 
+        Args.removeIf(String::isEmpty);
+
         if(Args.size() == 1 && cmd.equals("cd")){
             if(new File(Args.get(0)).isAbsolute()){
                 isPathAbsolute = true;
