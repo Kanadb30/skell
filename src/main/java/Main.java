@@ -6,6 +6,7 @@ import java.io.*;
 import org.jline.reader.*;
 import org.jline.reader.LineReader;
 import org.jline.reader.impl.history.DefaultHistory;
+import org.jline.reader.impl.DefaultParser;
 import org.jline.terminal.*;
 import builtin.*;
 import custom.declarePair;
@@ -23,9 +24,13 @@ public class Main {
     public static void main(String[] args) throws Exception {
         String historyFile = System.getenv("HISTFILE");
         Terminal terminal = TerminalBuilder.builder().system(true).build();
+
+        DefaultParser parser = new DefaultParser();
+        parser.setEscapeChars(null);
         LineReader reader = LineReaderBuilder.builder()
             .terminal(terminal)
             .history(new DefaultHistory())
+            .parser(parser)
             .build();
         reader.unsetOpt(LineReader.Option.HISTORY_IGNORE_DUPS);
         History HIS = reader.getHistory();
