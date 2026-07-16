@@ -22,10 +22,12 @@ public class Args{
                     seenDollar = false;
                     seenDollarInBrackets = false;
                 }else if(seenDollar){
-                    String varValue = DECLARE_PAIR.get(currentVar.toString());
+                    String varValue = DECLARE_PAIR.getValue(currentVar.toString());
                     if(varValue != null){
                         currentArg.append(varValue);
                     }
+                    Args.add(currentArg.toString());
+                    currentArg.setLength(0);
                     currentVar.setLength(0);
                     tokenStarted = false;
                     seenDollar = false;
@@ -44,7 +46,7 @@ public class Args{
                 seenDollarInBrackets = true;
                 tokenStarted = true;
             }else if(token == '}' && seenDollarInBrackets && !inSingleQuotes){
-                String varValue = DECLARE_PAIR.get(currentVar.toString());
+                String varValue = DECLARE_PAIR.getValue(currentVar.toString());
                 if(varValue != null){
                     currentArg.append(varValue);
                 }
