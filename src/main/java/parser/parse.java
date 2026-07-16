@@ -68,7 +68,17 @@ public class parse{
         for(String arg : Args){
             if(arg.contains("$")){
                 for(int i = 0;i < arg.length(); i++){
-                    if(arg.charAt(i) == '$'){
+                    if(arg.charAt(i) == '$' && i+3 < arg.length() && arg.charAt(i+1) == '{'){
+                        int endIndex = arg.indexOf('}', i+2);
+                        if(endIndex != -1){
+                            String varName = arg.substring(i+2, endIndex);
+                            String value = DECLARE_PAIR.getValue(varName);
+                            if(value != null){
+                                arg = arg.replace("${" + varName + "}", value);
+                            }
+                            i = endIndex;
+                        }
+                    }else if(arg.charAt(i) == '$'){
                         String varName = "";
                         i++;
                         while(i < arg.length() && (Character.isLetterOrDigit(arg.charAt(i)) || arg.charAt(i) == '_')){
