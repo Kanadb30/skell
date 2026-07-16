@@ -62,5 +62,23 @@ public class Args{
                 }
             }
         }
+        if(tokenStarted && currentArg.length() > 0 && !seenDollar && !seenDollarInBrackets){
+            Args.add(currentArg.toString());
+            currentArg.setLength(0);
+            tokenStarted = false;
+            seenDollar = false;
+            seenDollarInBrackets = false;
+        }else if(seenDollar){
+            String varValue = DECLARE_PAIR.getValue(currentVar.toString());
+            if(varValue != null){
+                currentArg.append(varValue);
+            }
+            Args.add(currentArg.toString());
+            currentArg.setLength(0);
+            currentVar.setLength(0);
+            tokenStarted = false;
+            seenDollar = false;
+            seenDollarInBrackets = false;
+        }
     }
 }
