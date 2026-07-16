@@ -84,6 +84,9 @@ public class parse{
                             if(value != null){
                                 arg = arg.substring(0, i) + value + arg.substring(endIndex+1);
                                 i += value.length() - 1;
+                            }else{
+                                arg = arg.substring(0, i) + arg.substring(endIndex+1);
+                                i--;
                             }
                         }
                     }else if(arg.charAt(i) == '$'){
