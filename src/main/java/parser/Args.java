@@ -55,6 +55,7 @@ public class Args{
                 seenDollar = false;
                 tokenStarted = true;
             }else{
+                tokenStarted = true;
                 if(seenDollar){
                     currentVar.append(token);
                 }else{
