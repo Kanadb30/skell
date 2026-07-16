@@ -50,6 +50,15 @@ public class parse{
         }
         
         Args.ParseArgs(input, args);
+
+        if((cmd.equals("cd") || cmd.equals("pwd") || cmd.equals("history")) && args.size() > 0){
+            hasPath = true;
+            if(args.size() > 0){
+                String path = args.get(0);
+                File file = new File(path);
+                isPathAbsolute = file.isAbsolute();
+            }
+        }
         
         return new custom.cmd(cmd, isBuiltin, flag, args, hasPath, isPathAbsolute);
     }

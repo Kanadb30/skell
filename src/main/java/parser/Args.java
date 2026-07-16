@@ -83,5 +83,6 @@ public class Args{
         }
 
         Args.removeIf(arg -> arg.isEmpty());
+
     }
 }
