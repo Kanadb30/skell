@@ -64,7 +64,7 @@ public class parse{
         if(toAdd.length() > 0){
             Args.add(toAdd);
         }
-        int itr = 0;
+        int argIndex = 0;
         for(String arg : Args){
             if(arg.contains("$")){
                 for(int i = 0;i < arg.length(); i++){
@@ -101,10 +101,10 @@ public class parse{
                     }
                 }
             }
-            if(!Args.get(itr).equals(arg)){
-                Args.set(itr, arg);
+            if(!Args.get(argIndex).equals(arg)){
+                Args.set(argIndex, arg);
             }
-            itr++;
+            argIndex++;
         }
 
         if(Args.size() == 1 && cmd.equals("cd")){
