@@ -91,18 +91,21 @@ public class parse{
                         }
                     }else if(arg.charAt(i) == '$'){
                         String varName = "";
-                        i++;
-                        while(i < arg.length() && (Character.isLetterOrDigit(arg.charAt(i)) || arg.charAt(i) == '_')){
-                            varName += arg.charAt(i);
+                        int itr = i + 1;
+                        while(itr < arg.length() && (Character.isLetterOrDigit(arg.charAt(itr)) || arg.charAt(itr) == '_')){
+                            varName += arg.charAt(itr);
                             String value = DECLARE_PAIR.getValue(varName);
                             if(value != null){
-                                arg = arg.replace("$" + varName, value);
-                            }else{
-                                arg = arg.replace("$" + varName, "");
+                                arg = arg.substring(0, i) + value + arg.substring(itr);
+                                i += value.length() - 1;
+                                break;
                             }
-                            i++;
+                            itr++;
                         }
-                        
+                        if(arg.charAt(i) == "$" && DECLARE_PAIR.getValue(arg.substring(i+1, arg.length())) == null){
+                            arg = arg.substring(0, i);
+                            i--;
+                        }
                     }
                 }
             }
