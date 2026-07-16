@@ -96,7 +96,7 @@ public class parse{
                             varName += arg.charAt(itr);
                             String value = DECLARE_PAIR.getValue(varName);
                             if(value != null){
-                                arg = arg.substring(0, i) + value + arg.substring(itr);
+                                arg = arg.substring(0, i) + value + arg.substring(itr+1);
                                 i += value.length() - 1;
                                 break;
                             }
