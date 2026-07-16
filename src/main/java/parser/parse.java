@@ -78,7 +78,7 @@ public class parse{
                             }
                         }
                         if(endIndex != -1 && endIndex > i+2){
-                            String varName = arg.subString(i+2, endIndex);
+                            String varName = arg.substring(i+2, endIndex);
                             String value = DECLARE_PAIR.getValue(varName);
                             if(value != null){
                                 arg = arg.replace("${" + varName + "}", value);
