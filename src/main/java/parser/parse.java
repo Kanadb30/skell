@@ -76,6 +76,7 @@ public class parse{
                                 endIndex = itr;
                                 break;
                             }
+                            itr++;
                         }
                         if(endIndex != -1 && endIndex > i+2){
                             String varName = arg.substring(i+2, endIndex);
