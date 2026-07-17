@@ -32,7 +32,7 @@ public class parse{
             }
             cmd = input.substring(1, breakPoint);
             int itr = 0;
-            while(cmd.substring(itr).conatins("\\")){
+            while(cmd.substring(itr).contains("\\")){
                 itr = cmd.indexOf("\\", itr);
                 cmd = cmd.substring(0, itr) + cmd.substring(itr + 1);
                 itr++;
