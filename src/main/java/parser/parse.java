@@ -30,9 +30,13 @@ public class parse{
             if(breakPoint == -1){
                 return null;
             }
-            ArrayList<String> dummy = new ArrayList<>();
-            Args.ParseArgs(input.substring(1, breakPoint), dummy);
-            cmd = String.join(" ", dummy);
+            cmd = input.substring(1, breakPoint);
+            int itr = 0;
+            while(cmd.substring(itr).conatins("\\")){
+                itr = cmd.indexOf("\\", itr);
+                cmd = cmd.substring(0, itr) + cmd.substring(itr + 1);
+                itr++;
+            }
             input = input.substring(breakPoint + 1).trim();
         }else{
             for(int i = 0;i < input.length(); i++){
