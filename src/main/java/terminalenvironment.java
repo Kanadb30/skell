@@ -14,7 +14,7 @@ import org.jline.reader.impl.completer.AggregateCompleter;
 
 class terminalEnvironnment {
 
-    History HIS = new DefaultHistory();
+    public static History HIS = new DefaultHistory();
 
     public static LineReader setupTerminal() throws Exception {
         
