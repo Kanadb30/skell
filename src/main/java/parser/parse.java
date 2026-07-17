@@ -18,24 +18,37 @@ public class parse{
 
         int breakPoint = 0;
 
+        input = input.trim();
+
         if(input == null || input.trim().isEmpty()){
             return null;
         }
         cmd = "";
-        for(int i = 0;i < input.length(); i++){
-            if(input.charAt(i) == ' '){
-                breakPoint = i;
-                break;
-            } else{
-                cmd += input.charAt(i);
+        if(input.charAt(0) == '\'' || input.charAt(0) == '\"'){
+            char quoteChar = input.charAt(0);
+            breakPoint = input.indexOf(quoteChar, 1);
+            if(breakPoint == -1){
+                return null;
             }
-        }
+            cmd = input.substring(1, breakPoint);
+            input = input.substring(breakPoint + 1).trim();
+        }else{
+            for(int i = 0;i < input.length(); i++){
+                if(input.charAt(i) == ' '){
+                    breakPoint = i;
+                    break;
+                } else{
+                    cmd += input.charAt(i);
+                }
+            }
 
-        if(breakPoint == 0){
-            breakPoint = input.length();
-        }
+            if(breakPoint == 0){
+                breakPoint = input.length();
+            }
 
-        input = input.substring(breakPoint).trim();
+            input = input.substring(breakPoint).trim();
+        }
+        
 
         if(BUILT_IN.contains(cmd)){
             isBuiltin = true;
