@@ -8,7 +8,7 @@ import org.jline.reader.LineReader;
 import builtin.*;
 import custom.declarePair;
 import parser.parse;
-import terminalenvironment.HIS as HIS;
+import terminalenvironment.HIS;
 
 
 public class Main {
