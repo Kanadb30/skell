@@ -9,12 +9,15 @@ import org.jline.reader.impl.DefaultParser;
 import org.jline.reader.Completer;
 // import org.jline.reader.impl.completer.ArgumentCompleter;
 import org.jline.reader.impl.completer.FileNameCompleter;
-import parser.CommandCompleter;
 import org.jline.terminal.*;
 import org.jline.reader.impl.completer.AggregateCompleter;
 
 class terminalEnvironnment {
+
+    History HIS = new DefaultHistory();
+
     public static LineReader setupTerminal() throws Exception {
+        
         Terminal terminal = TerminalBuilder.builder().system(true).build();
 
         Completer fileCompleter = new FileNameCompleter();
@@ -26,7 +29,7 @@ class terminalEnvironnment {
         parser.setEscapeChars(null);
         LineReader reader = LineReaderBuilder.builder()
             .terminal(terminal)
-            .history(new DefaultHistory())
+            .history(HIS)
             .parser(parser)
             .completer(completer)
             .build();

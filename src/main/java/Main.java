@@ -8,6 +8,7 @@ import org.jline.reader.LineReader;
 import builtin.*;
 import custom.declarePair;
 import parser.parse;
+import terminalenvironment.HIS as HIS;
 
 
 public class Main {
@@ -21,6 +22,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         String historyFile = System.getenv("HISTFILE");
         LineReader reader = terminalEnvironnment.setupTerminal();
+        
         
         while(true) {
             String cmd;
