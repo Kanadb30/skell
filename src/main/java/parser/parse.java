@@ -30,7 +30,9 @@ public class parse{
             if(breakPoint == -1){
                 return null;
             }
-            cmd = input.substring(1, breakPoint);
+            ArrayList<String> dummy = new ArrayList<>();
+            Args.ParseArgs(input.substring(1, breakPoint), dummy);
+            cmd = String.join(" ", dummy);
             input = input.substring(breakPoint + 1).trim();
         }else{
             for(int i = 0;i < input.length(); i++){
