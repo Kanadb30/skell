@@ -8,7 +8,6 @@ import org.jline.reader.LineReader;
 import builtin.*;
 import custom.declarePair;
 import parser.parse;
-import terminalenvironment.HIS;
 
 
 public class Main {
@@ -41,7 +40,7 @@ public class Main {
                 break;
             } 
             else if(parsedCmd.isBuiltin && !parsedCmd.cmd.equals("type")) {
-                execute.execute(parsedCmd, HIS);
+                execute.execute(parsedCmd, terminalEnvironnment.HIS);
             }
             
             else if (parsedCmd.cmd.equals("type")) {
@@ -66,7 +65,7 @@ public class Main {
 	        
         }
         if (historyFile != null){
-            builtin.history.history_w(historyFile, HIS);
+            builtin.history.history_w(historyFile, terminalEnvironnment.HIS);
         }
         
         
