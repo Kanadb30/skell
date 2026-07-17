@@ -15,7 +15,7 @@ public class Args{
         boolean seenBackslash = false;
 
         for( char token : input.toCharArray()){
-            if(token == '\\' && !inSingleQuotes && !inDoubleQuotes && !seenBackslash){
+            if(token == '\\' && !inSingleQuotes && !seenBackslash){
                 seenBackslash = true;
                 tokenStarted = true;
             }else if(token == ' ' && !inSingleQuotes && !inDoubleQuotes && !seenBackslash){
