@@ -5,6 +5,8 @@ import java.nio.*;
 import java.io.*;
 import org.jline.reader.*;
 import org.jline.reader.LineReader;
+import org.jline.reader.LineReaderBuilder;
+import org.jline.reader.impl.completer.StringsCompleter;
 import org.jline.reader.impl.history.DefaultHistory;
 import org.jline.reader.impl.DefaultParser;
 import org.jline.terminal.*;
@@ -25,12 +27,15 @@ public class Main {
         String historyFile = System.getenv("HISTFILE");
         Terminal terminal = TerminalBuilder.builder().system(true).build();
 
+        StringsCompleter completer = new StringsCompleter(BUILT_IN);
+
         DefaultParser parser = new DefaultParser();
         parser.setEscapeChars(null);
         LineReader reader = LineReaderBuilder.builder()
             .terminal(terminal)
             .history(new DefaultHistory())
             .parser(parser)
+            .completer(completer)
             .build();
         reader.unsetOpt(LineReader.Option.HISTORY_IGNORE_DUPS);
         History HIS = reader.getHistory();
