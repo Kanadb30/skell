@@ -33,7 +33,8 @@ class terminalEnvironnment {
                 ArrayList<String> files = new ArrayList<>(List.of(folder.list()));
                 for(int itr = 0;itr < files.size();itr++){
                     if(files.get(itr).contains(".")){
-                        files.set(itr, files.get(itr).reverse().substring(files.get(itr).indexOf(".")+1).reverse());
+                        String fileName = files.get(itr);
+                        files.set(itr, fileName.substring(0, fileName.lastIndexOf('.')));
                     }
                 }
                 cmdsToComplete.addAll(files);
