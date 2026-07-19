@@ -11,6 +11,8 @@ import org.jline.reader.Completer;
 import org.jline.reader.impl.completer.FileNameCompleter;
 import org.jline.terminal.*;
 import org.jline.reader.impl.completer.AggregateCompleter;
+import java.util.*;
+import java.io.*;
 
 class terminalEnvironnment {
 
