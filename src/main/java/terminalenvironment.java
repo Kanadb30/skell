@@ -21,7 +21,24 @@ class terminalEnvironnment {
         Terminal terminal = TerminalBuilder.builder().system(true).build();
 
         Completer fileCompleter = new FileNameCompleter();
-        StringsCompleter customCompleter = new StringsCompleter(Main.BUILT_IN);
+        ArrayList<String> cmdsToComplete = new ArrayList<>(Main.BUILT_IN);
+
+        String path = System.getenv("PATH");
+        ArrayList<String> PATH_DIRS = new ArrayList<>(List.of(path.split(File.pathSeparator)));
+        for(String dir : PATH_DIRS){
+            File folder = new File(dir);
+            if(folder.isDirectory()){
+                ArrayList<String> files = new ArrayList<>(List.of(folder.list()));
+                for(int itr = 0;itr < files.size();itr++){
+                    if(files.get(itr).contains(".")){
+                        files.set(itr, files.get(itr).reverse().substring(files.get(itr).indexOf(".")+1).reverse());
+                    }
+                }
+                cmdsToComplete.addAll(files);
+            }
+        }
+
+        StringsCompleter customCompleter = new StringsCompleter(cmdsToComplete);
 
         Completer completer = new AggregateCompleter(customCompleter, fileCompleter);
 
