@@ -54,8 +54,8 @@ class terminalEnvironnment {
             .completer(completer)
             .build();
         reader.unsetOpt(LineReader.Option.HISTORY_IGNORE_DUPS);
+        reader.setVariable(LineReader.BELL_STYLE, "visible");
         reader.setOpt(LineReader.Option.AUTO_LIST);   // List all matching choices on double-tab
-        reader.setOpt(LineReader.Option.MENU_COMPLETE); // Cycle through options with the tab key
         reader.unsetOpt(LineReader.Option.INSERT_TAB);  // Disable inserting a tab character on tab key press
         return reader;
     }
