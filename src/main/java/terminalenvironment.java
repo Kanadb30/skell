@@ -13,6 +13,7 @@ import org.jline.reader.impl.completer.AggregateCompleter;
 import org.jline.keymap.KeyMap;
 import org.jline.reader.Widget;
 import org.jline.reader.Reference;
+import org.jline.reader.Parser;
 import java.util.*;
 import java.io.*;
 import java.util.stream.Collectors;
@@ -66,8 +67,9 @@ class terminalEnvironnment {
 
         Widget customTabWidget = () -> {
             String buffer = reader.getBuffer().toString();
+            ParsedLine parsedLine = parser.parse(buffer, buffer.length(), Parser.ParseContext.COMPLETE);
             List<Candidate> candidates = new ArrayList<>();
-            completer.complete(reader, reader.getParsedLine(), candidates);
+            completer.complete(reader, parsedLine, candidates);
             candidates = candidates.stream()
                 .collect(Collectors.toMap(Candidate::value, c -> c, (a, b) -> a, LinkedHashMap::new))
                 .values().stream()
