@@ -68,9 +68,13 @@ class terminalEnvironnment {
         Widget customTabWidget = () -> {
             String buffer = reader.getBuffer().toString();
             ParsedLine parsedLine = parser.parse(buffer, buffer.length(), Parser.ParseContext.COMPLETE);
-            List<Candidate> candidates = new ArrayList<>();
-            completer.complete(reader, parsedLine, candidates);
-            candidates = candidates.stream()
+            String word = parsedLine.word(); // the token currently being typed
+
+            List<Candidate> rawCandidates = new ArrayList<>();
+            completer.complete(reader, parsedLine, rawCandidates);
+
+            List<Candidate> candidates = rawCandidates.stream()
+                .filter(c -> c.value().startsWith(word))
                 .collect(Collectors.toMap(Candidate::value, c -> c, (a, b) -> a, LinkedHashMap::new))
                 .values().stream()
                 .sorted(Comparator.comparing(Candidate::value))
