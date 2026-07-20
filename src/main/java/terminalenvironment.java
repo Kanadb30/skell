@@ -48,6 +48,8 @@ class terminalEnvironnment {
         parser.setEscapeChars(null);
         LineReader reader = LineReaderBuilder.builder()
             .terminal(terminal)
+            .system(true)
+            .dumb(flase)
             .history(HIS)
             .parser(parser)
             .completer(completer)
