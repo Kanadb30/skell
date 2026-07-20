@@ -19,7 +19,7 @@ class terminalEnvironnment {
 
     public static LineReader setupTerminal() throws Exception {
         
-        Terminal terminal = TerminalBuilder.builder().system(true).build();
+        Terminal terminal = TerminalBuilder.builder().system(true).dumb(false).build();
 
         Completer fileCompleter = new FileNameCompleter();
         ArrayList<String> cmdsToComplete = new ArrayList<>(Main.BUILT_IN);
@@ -48,8 +48,6 @@ class terminalEnvironnment {
         parser.setEscapeChars(null);
         LineReader reader = LineReaderBuilder.builder()
             .terminal(terminal)
-            .system(true)
-            .dumb(flase)
             .history(HIS)
             .parser(parser)
             .completer(completer)
