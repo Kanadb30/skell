@@ -20,6 +20,11 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         String historyFile = System.getenv("HISTFILE");
+
+        if(historyFile != null){
+            builtin.history.history_r(historyFile, terminalEnvironnment.HIS);
+        }
+
         LineReader reader = terminalEnvironnment.setupTerminal();
         
         
