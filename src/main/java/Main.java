@@ -26,7 +26,8 @@ public class Main {
         while(true) {
             String cmd;
             try {
-                cmd = reader.readLine(System.getProperty("user.dir") +"$ ");
+                //cmd = reader.readLine(System.getProperty("user.dir") +"$ ");
+                cmd = reader.readLine("$ ");
             } catch (EndOfFileException e) {
                 break;
             } catch (UserInterruptException e) {
