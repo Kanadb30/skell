@@ -7,7 +7,6 @@ import org.jline.reader.impl.completer.StringsCompleter;
 import org.jline.reader.impl.history.DefaultHistory;
 import org.jline.reader.impl.DefaultParser;
 import org.jline.reader.Completer;
-// import org.jline.reader.impl.completer.ArgumentCompleter;
 import org.jline.reader.impl.completer.FileNameCompleter;
 import org.jline.terminal.*;
 import org.jline.reader.impl.completer.AggregateCompleter;
@@ -55,7 +54,7 @@ class terminalEnvironnment {
             .build();
         reader.unsetOpt(LineReader.Option.HISTORY_IGNORE_DUPS);
         reader.setVariable(LineReader.BELL_STYLE, "visible");
-        reader.setOpt(LineReader.Option.AUTO_LIST);   // List all matching choices on double-tab
+        //reader.setOpt(LineReader.Option.AUTO_LIST);   // List all matching choices on double-tab
         reader.unsetOpt(LineReader.Option.INSERT_TAB);  // Disable inserting a tab character on tab key press
         return reader;
     }
