@@ -26,13 +26,15 @@ public class Main {
         }
 
         LineReader reader = terminalEnvironnment.setupTerminal();
+        System.setProperty("user", "The_K");
         
-        
+        welcome.printWelcome();
+
         while(true) {
             String cmd;
             try {
-                //cmd = reader.readLine(System.getProperty("user.dir") +"$ ");
-                cmd = reader.readLine("$ ");
+                cmd = reader.readLine(System.getProperty("user") + "@" + System.getProperty("user.dir") +"$ ");
+                // cmd = reader.readLine("$ ");
             } catch (EndOfFileException e) {
                 break;
             } catch (UserInterruptException e) {
