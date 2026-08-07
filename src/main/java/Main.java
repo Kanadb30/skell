@@ -33,7 +33,7 @@ public class Main {
         while(true) {
             String cmd;
             try {
-                cmd = reader.readLine(System.getProperty("user") + "@" + System.getProperty("user.dir") +"$ ");
+                cmd = reader.readLine(System.getProperty("user") +"\n~-~" + System.getProperty("user.dir")+ "~$ ");
                 // cmd = reader.readLine("$ ");
             } catch (EndOfFileException e) {
                 break;
