@@ -62,6 +62,7 @@ public class Main {
                 command.addAll(parsedCmd.Args);
                 ProcessBuilder pb = new ProcessBuilder(command);
                 pb.inheritIO();
+                pb.directory(new File(System.getProperty("user.dir")));
                 Process p = pb.start();
                 p.waitFor();
             }
