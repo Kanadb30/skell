@@ -1,34 +1,28 @@
-[![progress-banner](https://backend.codecrafters.io/progress/shell/7484f4ee-d288-4128-9ada-f6bb97bd59e7)](https://app.codecrafters.io/users/Kanadb30?r=2qF)
+# Java Shell Implementation
 
-This is a starting point for Java solutions to the
-["Build Your Own Shell" Challenge](https://app.codecrafters.io/courses/shell/overview).
+A POSIX-compliant shell implementation in Java with support for builtin commands (cd, pwd, echo, history, declare) and external program execution.
 
-In this challenge, you'll build your own POSIX compliant shell that's capable of
-interpreting shell commands, running external programs and builtin commands like
-cd, pwd, echo and more. Along the way, you'll learn about shell command parsing,
-REPLs, builtin commands, and more.
+## Getting Started
 
-**Note**: If you're viewing this repo on GitHub, head over to
-[codecrafters.io](https://codecrafters.io) to try the challenge.
+### Prerequisites
+- Java 26+
+- Maven
 
-# Passing the first stage
-
-The entry point for your `shell` implementation is in `src/main/java/Main.java`.
-Study and uncomment the relevant code, then run the command below to execute the
-tests on our servers:
+### Building
 
 ```sh
-codecrafters submit
+mvn clean package
 ```
 
-Time to move on to the next stage!
+### Running
 
-# Stage 2 & beyond
+```sh
+java -jar target/shell.jar
+```
 
-Note: This section is for stages 2 and beyond.
+## Project Structure
 
-1. Ensure you have `mvn` installed locally
-1. Run `./your_program.sh` to run your program, which is implemented in
-   `src/main/java/Main.java`.
-1. Run `codecrafters submit` to submit your solution to CodeCrafters. Test
-   output will be streamed to your terminal.
+- `src/main/java/Main.java` - Entry point
+- `src/main/java/builtin/` - Builtin command implementations (cd, pwd, echo, history, declare)
+- `src/main/java/custom/` - Custom utilities (cmd, declarePair)
+- `src/main/java/parser/` - Command parsing logic
